@@ -1,0 +1,61 @@
+<div class="sidebar">
+  <div class="logo-details">
+    <i class="bx bxl-c-plus-plus"></i>
+    <span class="logo_name">TRAINER</span>
+  </div>
+  <ul class="nav-links">
+    <li *ngIf="_auth.loggedIn()">
+      <a *ngIf="!_trainerService.isTrainerApproved()" routerLink="enrollment">
+        <i class="bi bi-person-lines-fill"></i>
+        <span class="links_name">Enrollment Form</span>
+      </a>
+    </li>
+
+    <li *ngIf="_auth.loggedIn()">
+      <a *ngIf="_trainerService.isTrainerApproved()" routerLink="profile">
+        <i class="bi bi-person-circle"></i>
+        <span class="links_name">Profile</span>
+      </a>
+    </li>
+
+    <li *ngIf="_auth.loggedIn()">
+      <a *ngIf="_trainerService.isTrainerApproved()" routerLink="schedule">
+        <i class="bi bi-calendar-range-fill"></i>
+        <span class="links_name">Schedule</span>
+      </a>
+    </li>
+
+    <li class="log_out" *ngIf="_auth.loggedIn()" (click)="logoutUser()">
+      <a>
+        <i class="bi bi-box-arrow-right"></i>
+        <span class="links_name">Log out</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<section class="home-section">
+  <!-- <nav>
+      <div class="sidebar-button">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+        <span class="dashboard">Home</span>
+      </div>
+     
+      
+    </nav> -->
+
+  <!-- <div class="home-content"> -->
+  <router-outlet></router-outlet>
+
+  <!-- </div> -->
+</section>
+
+<script>
+  let sidebar = document.querySelector(".sidebar");
+  let sidebarBtn = document.querySelector(".sidebarBtn");
+  sidebarBtn.onclick = function () {
+    sidebar.classList.toggle("active");
+    if (sidebar.classList.contains("active")) {
+      sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+    } else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+  };
+</script>

@@ -1,0 +1,80 @@
+<section id="section">
+  <!-- <div class="card"> -->
+  <!-- <div class="card-header">All Students</div> -->
+  <!-- <div class="card-body"> -->
+  <div class="container-fluid">
+    <h4 style="text-align: center">STUDENTS LIST</h4>
+    <!-- loading-spinner -->
+    <div *ngIf="isLoading" style="text-align: center;">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <table 
+      class="table
+        table-primary
+        table-hover
+        table-responsive-sm
+        table-responsive-md
+        table-responsive-lg
+        table-bordered
+      "
+    >
+      <thead class="thead-dark">
+        <tr>
+          <th>Name</th>
+          <th>DOB</th>
+          <th>Sex</th>
+          <th>Qualification</th>
+          <th>Applied Course</th>
+          <th>Payment Date</th>
+          <th>Approval Date</th>
+          <th>Status</th>
+          <th>Full Details</th>
+          <th>Approve</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let Student of Students">
+          <td>{{ Student.Name }}</td>
+          <td>{{ Student.DOB | date }}</td>
+          <td>{{ Student.Sex }}</td>
+          <td>{{ Student.HighestQualification }}</td>
+          <td>{{ Student.Course }}</td>
+          <td *ngIf="Student.PaymentDate">
+            {{ Student.PaymentDate | date }}
+          </td>
+          <td *ngIf="!Student.PaymentDate">Not Paid</td>
+
+          <td *ngIf="Student.ApprovalDate">
+            {{ Student.ApprovalDate | date }}
+          </td>
+          <td *ngIf="!Student.ApprovalDate">Not Approved</td>
+
+          <td>{{ Student.Status }}</td>
+          <td>
+            <button
+              class="btn btn-sm btn-warning"
+              style="cursor: pointer; margin-left: 20px"
+              *ngIf="Student.Name"
+            >
+              <a [routerLink]="['/students', Student._id]">View</a>
+            </button>
+          </td>
+          <!-- <td>
+  
+              </td> -->
+          <td>
+            <button
+              class="btn btn-success btn-sm ml-1"
+              style="cursor: pointer"
+              *ngIf="Student.Name"
+              (click)="onApprove(Student._id, Student.Course, Student.Email)"
+            >
+              Approve
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- </div> -->
+</section>

@@ -1,0 +1,131 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<section class="home-section">
+  <nav>
+    <div class="sidebar-button">
+      <i class="bi bi-columns-gap sidebarBtn"  ></i>
+      <span class="dashboard" >Dashboard</span>
+    </div>
+  </nav>
+
+  <div class="home-content">
+    <div class="overview-boxes">
+    <div class="box" >
+      <div class="right-side">
+        <div class="box-topic">Total Requests</div>
+        <div style="padding:15%; color: rgb(22, 99, 99);" class="number">{{numbers[0]}}</div>
+        <div class="indicator">
+            <i class="bi bi-calendar-check"></i>
+          <span class="text" >Up to date</span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="box">
+      <div class="right-side">
+        <div class="box-topic">Total Trainers</div>
+        <div class="number" style="padding:15%; color: rgb(87, 9, 9);">{{numbers[2]}}</div>
+        <div class="indicator">
+            <i class="bi bi-calendar-check"></i>
+          <span class="text">Up to date</span>
+        </div>
+      </div>
+    </div>
+    <div class="box" >
+      <div class="right-side" >
+
+        <div class="box-topic">Total Allocated Trainers</div>
+        <div class="number" style="padding:15%;color:rgb(22, 99, 99);">{{numbers[1]}}</div>
+        
+        <div class="indicator">
+            <i class="bi bi-calendar-check"></i>
+          <span class="text">Up to date</span>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+  <br>
+    <div class="table table-responsive">
+    <table class="search-table ">
+        <thead class="thead-dark">
+          <tr>
+            
+            <th scope="col">Name</th>
+            <th scope="col">Skill Set</th>
+            <th scope="col">Type of Trainer</th>
+            <th scope="col" >ICTAK Course</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+           
+            <td>
+               
+                  <div class="input-group">
+                    <div class="form-outline">
+                      <input id="search-input" type="search"  width="10px" (change)="updateName($event)" [(ngModel)]="namesearch" />
+                     
+                    
+                    <button id="button" (click)="searchName()" type="button" class="btn ">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </div>
+                  </div>    
+                
+            </td>
+            <td>
+                <div class="input-group">
+                    <div class="form-outline">
+                      <input id="search-input" type="search" (change)="updateSkill($event)"  width="10px"  />
+                     
+                    
+                    <button id="button" type="button" (click)="searchSkill()" class="btn ">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </div>
+                  </div>    
+                 
+            </td>
+            <td><div class="input-group">
+                <div class="form-outline">
+                  <input id="search-input" type="search" (change)="updateType($event)"  width="10px"  />
+                 
+                
+                <button id="button" type="button" (click)="searchType()" class="btn ">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+                </div>
+              </div>    
+            </td>
+            <td>
+                <div class="input-group">
+                    <div class="form-outline">
+                      <input id="search-input" type="search" (change)="updateCourse($event)" width="10px"  />
+                     
+                    
+                    <button id="button" type="button" (click)="searchCourse()" class="btn ">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </div>
+                  </div>    
+                
+            </td>
+          </tr>
+          <tr *ngFor="let trainer of trainerslist" id="tablerow" (click)="Allocate(trainer)" >
+            
+            <td scope="row" >{{trainer.fname}} {{trainer.lname}}</td>
+            <td>{{trainer.skill}}</td>
+            <td>{{trainer.typeemp}}</td>
+            <td>{{trainer.course}}</td>
+            
+          </tr>
+         
+        </tbody>
+      </table>
+      </div>
+      
+  
+</div>
+</section>

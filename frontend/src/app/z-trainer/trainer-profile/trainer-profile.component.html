@@ -1,0 +1,262 @@
+<section class="home-section">
+  <nav>
+    <div class="sidebar-button">
+      <i class="bi bi-person-circle"></i>
+      <span class="dashboard">Profile</span>
+    </div>
+  </nav>
+  <div class="home-content">
+    <div class="container">
+      <form
+        class="row no-gutters align-items-stretch"
+        [formGroup]="editProfileForm"
+        (ngSubmit)="save()"
+      >
+        <div class="col-md-4 text-center">
+          <div class="card h-100">
+            <div class="card-body profile">
+              <figure
+                class="avatar"
+                [ngClass]="{
+                  imageUpload: isEditProfile
+                }"
+                [attr.tabindex]="isEditProfile ? 0 : null"
+              >
+                <input
+                  type="file"
+                  class="form-control"
+                  name="img"
+                  id="img"
+                  accept="/image*"
+                  *ngIf="isEditProfile"
+                  (change)="onFileSelected($event)"
+                  required
+                />
+
+                <img
+                  *ngIf="!isNewImage"
+                  src="{{ imagePath }}/{{ trainer.img }}"
+                  class="coverview"
+                />
+
+                <img *ngIf="isNewImage" [src]="url" class="coverview" />
+              </figure>
+
+              <div class="name">
+                <h2 *ngIf="!isEditProfile">
+                  {{ trainer.fname }} {{ trainer.lname }}
+                </h2>
+                <div class="form-group text-left" *ngIf="isEditProfile">
+                  <label for="firstName" class="lbl small">First Name</label>
+                  <input
+                    class="fc mb-2 form-control"
+                    type="text"
+                    name="fname"
+                    id="firstName"
+                    formControlName="fname"
+                    required
+                  />
+                  <label for="lastName" class="lbl">Last Name</label>
+                  <input
+                    class="fc mb-2 form-control"
+                    type="text"
+                    name=""
+                    id="lastName"
+                    formControlName="lname"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 *ngIf="!isEditProfile">
+                    <span class="text-muted small">
+                      {{ trainer.desgn }}
+                    </span>
+                    <input
+                      class="fc form-control"
+                      type="text"
+                      name=""
+                      id=""
+                      formControlName="desgn"
+                      required
+                      *ngIf="isEditProfile"
+                    />
+                  </h4>
+                </div>
+                <div class="col-md-12">
+                  <div
+                    class="label label-default"
+                    style="background-color: rgb(9, 68, 68)"
+                    [ngClass]="{
+                      'form-group': isEditProfile
+                    }"
+                  >
+                    <i class="bi bi-envelope-open"></i>
+                    <span *ngIf="!isEditProfile" class="d-inline-block ml-2">{{
+                      trainer.email
+                    }}</span>
+                    <input
+                      class="fc form-control"
+                      type="text"
+                      name=""
+                      id=""
+                      disabled
+                      [value]="trainer.email"
+                      required
+                      *ngIf="isEditProfile"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div
+                    class="label label-default"
+                    style="background-color: rgb(74, 77, 77)"
+                    [ngClass]="{
+                      'form-group': isEditProfile
+                    }"
+                  >
+                    <i class="bi bi-telephone"></i>
+                    <span *ngIf="!isEditProfile" class="d-inline-block ml-2">{{
+                      trainer.phno
+                    }}</span>
+                    <input
+                      class="fc form-control"
+                      type="text"
+                      name=""
+                      id=""
+                      formControlName="phno"
+                      required
+                      *ngIf="isEditProfile"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card h-100 form">
+            <div class="row content">
+              <div class="col-md-12">
+                <div class="lbl">Address</div>
+                <div class="value" *ngIf="!isEditProfile">
+                  <!-- <span class="d-none d-sm-inline">: </span> -->
+                  {{ trainer.address }}
+                </div>
+
+                <input
+                  class="fc form-control"
+                  *ngIf="isEditProfile"
+                  type="text"
+                  name=""
+                  id=""
+                  formControlName="address"
+                  required
+                />
+
+                <div class="lbl">Qualification</div>
+                <div class="value" *ngIf="!isEditProfile">
+                  <!-- <span class="d-none d-sm-inline">: </span> -->
+                  {{ trainer.qual }}
+                </div>
+                <input
+                  class="fc form-control"
+                  *ngIf="isEditProfile"
+                  type="text"
+                  name=""
+                  id=""
+                  formControlName="qual"
+                  required
+                />
+
+                <div class="lbl">Skill</div>
+                <div class="value" *ngIf="!isEditProfile">
+                  <!-- <span class="d-none d-sm-inline">: </span> -->
+                  {{ trainer.skill }}
+                </div>
+                <input
+                  class="fc form-control"
+                  *ngIf="isEditProfile"
+                  type="text"
+                  name=""
+                  id=""
+                  formControlName="skill"
+                  required
+                />
+
+                <div class="lbl">Company</div>
+                <div class="value" *ngIf="!isEditProfile">
+                  <!-- <span class="d-none d-sm-inline">: </span> -->
+                  {{ trainer.comp }}
+                </div>
+
+                <input
+                  class="fc form-control"
+                  *ngIf="isEditProfile"
+                  type="text"
+                  name="comp"
+                  id=""
+                  formControlName="comp"
+                  required
+                />
+
+                <div class="lbl">Course</div>
+                <div class="value" *ngIf="!isEditProfile">
+                  <!-- <span class="d-none d-sm-inline">: </span> -->
+                  {{ trainer.course }}
+                </div>
+
+                <input
+                  class="fc"
+                  *ngIf="isEditProfile"
+                  type="text"
+                  name=""
+                  id=""
+                  disabled
+                  [value]="trainer.course"
+                />
+
+                <div class="lbl">Employment Type</div>
+                <div class="value" *ngIf="!isEditProfile">
+                  <!-- <span class="d-none d-sm-inline">: </span> -->
+                  {{ trainer.typeemp }}
+                </div>
+                <input
+                  class="fc"
+                  *ngIf="isEditProfile"
+                  type="text"
+                  name=""
+                  id=""
+                  disabled
+                  [value]="trainer.typeemp"
+                />
+              </div>
+            </div>
+            <footer class="mt-auto p-3 d-flex">
+              <button
+                class="btn ml-auto"
+                id="bttn1"
+                (click)="editProfile()"
+                *ngIf="!isEditProfile"
+              >
+                <i class="bi bi-person-circle"></i>
+                <span class="ml-3 d-inline-block">Edit Profile</span>
+              </button>
+              <button
+                class="btn btn-primary ml-auto"
+                *ngIf="isEditProfile"
+                style="background-color: darkcyan"
+              >
+                <i class="bi bi-check2-circle"></i>
+                <span class="ml-3 d-inline-block">Save Profile</span>
+              </button>
+            </footer>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

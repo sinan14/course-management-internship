@@ -1,0 +1,509 @@
+<section id="section">
+  <!-- Student Profile -->
+  <div class="student-profile py-4 mt-10">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card shadow-sm">
+            <div class="card-header bg-transparent text-center">
+              <img
+                *ngIf="Student.image"
+                class="profile_img"
+                [src]="
+                  'data:image/' +
+                    Student.image.contentType +
+                    ';base64,' +
+                    Student.imageUrl | safe
+                "
+                alt="student dp"
+              />
+              <form
+                *ngIf="changePhoto"
+                class="mb-3"
+                [formGroup]="photoUpdateForm"
+                (ngSubmit)="onImageUpload()"
+              >
+                <div class="mb-3">
+                  <div class="form-file custom-file">
+                    <input
+                      class="form-file-input"
+                      type="file"
+                      (change)="selectImage($event)"
+                      accept="image/png, image/gif, image/jpeg"
+                    />
+                  </div>
+                </div>
+                <input
+                  type="submit"
+                  class="btn btn-sm btn-warning"
+                  value="change"
+                />
+              </form>
+              <button
+                *ngIf="!changePhoto"
+                (click)="changeOption()"
+                style="width: 100px"
+                class="btn btn-sm btn-success"
+                type="button"
+              >
+                change
+              </button>
+
+              <h3>{{ Student.Name }}</h3>
+            </div>
+            <div *ngIf="Student.PaymentDate" class="card-body">
+              <p class="mb-0">
+                <strong class="pr-1">Student ID:</strong>{{ Student.Suid }}
+              </p>
+              <p class="mb-0">
+                <strong class="pr-1">Batch:</strong>{{ Student.Course }}
+              </p>
+              <p class="mb-0"><strong class="pr-1">Section:</strong>Retail</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="card shadow-sm">
+            <div class="card-header bg-transparent border-0">
+              <h3 class="mb-0">
+                <i class="fa fa-address-card mr-1"></i>General Information
+              </h3>
+            </div>
+            <!-- loading spinner -->
+            <div *ngIf="isLoading" style="text-align: center">
+              <app-loading-spinner></app-loading-spinner>
+            </div>
+            <!-- <form (ngSubmit)="updateProfile()"> -->
+            <form
+              [formGroup]="studentUpdateForm"
+              (ngSubmit)="onUpdateStudent()"
+            >
+              <div class="card-body pt-0">
+                <table class="table table-responsive">
+                  <tr>
+                    <th width="30%">Student Name</th>
+                    <td width="2%">:</td>
+                    <td [class.editModeOn]="!readonly">
+                      <input
+                        *ngIf="readonly"
+                        type="text"
+                        [value]="Student.Name"
+                        class="noBorder"
+                        readonly
+                      />
+                      <input
+                        *ngIf="!readonly"
+                        formControlName="Name"
+                        type="text"
+                        class="form-control Border"
+                        [value]="Student.Name"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th width="30%">Email</th>
+                    <td width="2%">:</td>
+                    <td [class.editModeOn]="!readonly">
+                      <input
+                        *ngIf="readonly"
+                        type="text"
+                        [value]="Student.Email"
+                        class="noBorder"
+                        readonly
+                      />
+                      <input
+                        *ngIf="!readonly"
+                        type="text"
+                        class="form-control Border"
+                        formControlName="Email"
+                        [value]="Student.Email"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th width="30%">Phone</th>
+                    <td width="2%">:</td>
+                    <td [class.editModeOn]="readonly == false">
+                      <input
+                        *ngIf="readonly"
+                        type="text"
+                        [value]="Student.Phone"
+                        class="noBorder"
+                        readonly
+                      />
+                      <input
+                        *ngIf="!readonly"
+                        type="text"
+                        formControlName="Phone"
+                        [value]="Student.Phone"
+                        class="form-control Border"
+                      />
+                    </td>
+                  </tr>
+                  <!-- Gender -->
+                  <tr>
+                    <th width="30%">Gender</th>
+                    <td width="2%">:</td>
+                    <td [class.editModeOn]="!readonly">
+                      <input
+                        *ngIf="readonly"
+                        type="text"
+                        [value]="Student.Sex"
+                        [ngClass]="{
+                          noBorder: readonly
+                        }"
+                        readonly
+                      />
+                      <input
+                        *ngIf="!readonly"
+                        formControlName="Sex"
+                        type="text"
+                        class="form-control Border"
+                        [value]="Student.Sex"
+                        readonly
+                        [ngClass]="{
+                          Border: !readonly
+                        }"
+                      />
+                    </td>
+                  </tr>
+                  <!-- dob -->
+                  <tr>
+                    <th width="30%">Date Of Birth</th>
+                    <td width="2%">:</td>
+                    <td [class.editModeOn]="readonly == false">
+                      <input
+                        *ngIf="readonly"
+                        [value]="Student.DOB | date"
+                        type="text"
+                        class="noBorder"
+                        readonly
+                      />
+                      <input
+                        *ngIf="!readonly"
+                        [value]="Student.DOB | date"
+                        type="text"
+                        class="Border form-control"
+                        readonly
+                      />
+                    </td>
+                  </tr>
+
+                  <!-- State -->
+                  <tr>
+                    <th width="30%">State</th>
+                    <td width="2%">:</td>
+                    <td [class.editModeOn]="readonly == false">
+                      <input
+                        *ngIf="readonly"
+                        [value]="Student.State"
+                        [ngClass]="{
+                          Border: !readonly,
+                          noBorder: readonly
+                        }"
+                        readonly
+                      />
+                      <input
+                        *ngIf="!readonly"
+                        [value]="Student.State"
+                        class="form-control"
+                        [ngClass]="{
+                          Border: !readonly,
+                          noBorder: readonly
+                        }"
+                        readonly
+                      />
+                    </td>
+                  </tr>
+                  <!-- District -->
+                  <tr>
+                    <th width="30%">District</th>
+                    <td width="2%">:</td>
+                    <td [class.editModeOn]="readonly == false">
+                      <input
+                        *ngIf="readonly"
+                        [value]="Student.District"
+                        [ngClass]="{
+                          Border: !readonly,
+                          noBorder: readonly
+                        }"
+                        readonly
+                      />
+                      <input
+                        *ngIf="!readonly"
+                        [value]="Student.District"
+                        class="form-control"
+                        [ngClass]="{
+                          Border: !readonly,
+                          noBorder: readonly
+                        }"
+                        readonly
+                      />
+                    </td>
+                  </tr>
+                  <!-- Course -->
+                  <tr>
+                    <th width="30%">Technology Training</th>
+                    <td width="2%">:</td>
+                    <td [class.editModeOn]="!readonly">
+                      <input
+                        *ngIf="readonly"
+                        type="text"
+                        [value]="Student.Course"
+                        [ngClass]="{
+                          noBorder: readonly
+                        }"
+                        readonly
+                      />
+                      <input
+                        *ngIf="!readonly"
+                        class="form-control Border"
+                        type="text"
+                        formControlName="Course"
+                        [value]="Student.Course"
+                        [ngClass]="{
+                          Border: !readonly
+                        }"
+                      />
+                    </td>
+                  </tr>
+                  <!-- HighestQualification -->
+                  <tr>
+                    <th width="30%">Highest Qualification</th>
+                    <td width="2%">:</td>
+                    <td *ngIf="readonly" [class.editModeOn]="!readonly">
+                      <input
+                        formControlName="HighestQualification"
+                        [value]="Student.HighestQualification"
+                        [ngClass]="{
+                          Border: !readonly,
+                          noBorder: readonly
+                        }"
+                        [readonly]="readonly"
+                      />
+                    </td>
+                    <td *ngIf="!readonly">
+                      <select
+                        class="form-control Border"
+                        formControlName="HighestQualification"
+                      >
+                        <option class="hidden" value="" disabled selected>
+                          Highest Qualification *
+                        </option>
+                        <option value="PostGraduateInCS">
+                          Post Graduate In Computer Science
+                        </option>
+                        <option value="GraduateInCS">
+                          Graduate In Computer Science
+                        </option>
+                        <option value="Graduate">
+                          Graduate In Other Streams
+                        </option>
+                        <option value="PostGraduate">
+                          Post GraduateIn Other Streams
+                        </option>
+                      </select>
+                    </td>
+                  </tr>
+
+                  <!-- PassOfYear -->
+                  <tr>
+                    <th width="30%">Pass Out Year</th>
+                    <td width="2%">:</td>
+                    <td [class.editModeOn]="readonly == false">
+                      <input
+                        *ngIf="readonly"
+                        class="noBorder"
+                        type="number"
+                        min="2010"
+                        max="2021"
+                        step="1"
+                        [value]="Student.PassOfYear"
+                        [ngClass]="{
+                          Border: !readonly,
+                          noBorder: readonly
+                        }"
+                        readonly
+                      />
+                      <input
+                        *ngIf="!readonly"
+                        class="form-control Border"
+                        formControlName="PassOfYear"
+                        type="number"
+                        min="2010"
+                        max="2021"
+                        step="1"
+                        [value]="Student.PassOfYear"
+                        [ngClass]="{
+                          Border: !readonly,
+                          noBorder: readonly
+                        }"
+                      />
+                    </td>
+                  </tr>
+                  <!-- SkillSet -->
+                  <tr>
+                    <th width="30%">Skill Set</th>
+                    <td width="2%">:</td>
+                    <td [class.editModeOn]="readonly == false">
+                      <input
+                        *ngIf="readonly"
+                        type="text"
+                        [value]="Student.SkillSet"
+                        [ngClass]="{
+                          Border: !readonly,
+                          noBorder: readonly
+                        }"
+                        readonly
+                      />
+                      <input
+                        *ngIf="!readonly"
+                        formControlName="SkillSet"
+                        type="text"
+                        class="form-control noBorder"
+                        [value]="Student.SkillSet"
+                        [ngClass]="{
+                          Border: !readonly,
+                          noBorder: readonly
+                        }"
+                      />
+                    </td>
+                  </tr>
+                  <!-- EmploymentStatus -->
+                  <tr>
+                    <th width="30%">Employment Status</th>
+                    <td width="2%">:</td>
+                    <td *ngIf="readonly">
+                      <input
+                        type="text"
+                        [value]="Student.EmploymentStatus"
+                        [ngClass]="{
+                          Border: !readonly,
+                          noBorder: readonly
+                        }"
+                        [readonly]="readonly"
+                      />
+                    </td>
+                    <td *ngIf="!readonly">
+                      <select
+                        class="form-control Border"
+                        formControlName="EmploymentStatus"
+                      >
+                        <option class="hidden" value="" disabled selected>
+                          Employment Status
+                        </option>
+                        <option value="Student">Student</option>
+                        <option value="Unemployed">Unemployed</option>
+                        <option value="Employed">Employed</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <!-- exitExamMark -->
+                  <tr *ngIf="_auth.getUser() == 'admin'">
+                    <th width="30%">Exit Exam Mark</th>
+                    <td width="2%">:</td>
+                    <td *ngIf="readonly">
+                      <input
+                        type="text"
+                        [value]="Student.ExitExamMark"
+                        class="noBorder"
+                        readonly
+                      />
+                    </td>
+                    <td *ngIf="!readonly">
+                      <input
+                        formControlName="ExitExamMark"
+                        type="number"
+                        min="0"
+                        max="100"
+                        [value]="Student.ExitExamMark"
+                        class="Border form-control"
+                      />
+                    </td>
+                  </tr>
+
+                  <!-- Password -->
+                  <tr>
+                    <th width="30%">Password</th>
+                    <td width="2%">:</td>
+                    <td [class.editModeOn]="!readonly">
+                      <input
+                        *ngIf="readonly"
+                        type="text"
+                        [value]="Student.Password"
+                        [ngClass]="{
+                          noBorder: readonly
+                        }"
+                        readonly
+                      />
+                      <input
+                        *ngIf="!readonly"
+                        formControlName="Password"
+                        type="text"
+                        class="form-control Border"
+                        [value]="Student.Password"
+                        [ngClass]="{
+                          Border: !readonly
+                        }"
+                      />
+                    </td>
+                  </tr>
+                </table>
+
+                <div *ngIf="readonly && Student.ApprovalDate != ''">
+                  <button
+                    *ngIf="showEditButton"
+                    (click)="update()"
+                    class="btn btn-sm btn-warning"
+                  >
+                    Update
+                  </button>
+                  <button
+                    *ngIf="showDeleteButton"
+                    type="button"
+                    (click)="deleteProfile()"
+                    class="btn btn-sm btn-danger"
+                  >
+                    Delete
+                  </button>
+                </div>
+
+                <div *ngIf="!readonly">
+                  <button *ngIf="showEditButton" class="btn btn-success btn-sm">
+                    Save
+                  </button>
+                  <button
+                    *ngIf="showEditButton"
+                    type="button"
+                    (click)="discard()"
+                    class="btn btn-info btn-sm"
+                  >
+                    Discard
+                  </button>
+                </div>
+              </div>
+            </form>
+            <!-- fdafafaf -->
+            <div *ngIf="_auth.getUser() == 'admin'">
+              <button
+                *ngIf="Student.ApprovalDate == ''"
+                (click)="onApprove(Student._id, Student.Course, Student.Email)"
+                class="btn btn-sm btn-success"
+              >
+                Approve
+              </button>
+              <button
+                *ngIf="Student.ApprovalDate == ''"
+                (click)="onReject(Student._id, Student.Course, Student.Email)"
+                class="btn btn-sm btn-danger"
+              >
+                reject
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- partial -->
+</section>

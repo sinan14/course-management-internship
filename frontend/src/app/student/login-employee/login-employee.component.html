@@ -1,0 +1,178 @@
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <div>
+        <div class="register" id="ul1">
+          <ul
+            style="width: 200px"
+            class="nav nav-tabs nav-justified"
+            id="myTab"
+            role="tablist"
+          >
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                data-toggle="tab"
+                routerLink="/employeelogin"
+                role="tab"
+                aria-selected="true"
+                >Employee</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                data-toggle="tab"
+                routerLink="/login"
+                role="tab"
+                aria-selected="false"
+              >
+                Student
+              </a>
+            </li>
+          </ul>
+        </div>
+        <form
+          class="login100-form validate-form"
+          [formGroup]="emploginForm"
+          (ngSubmit)="loginUser()"
+        >
+          <span class="login100-form-title p-b-43">
+            <b> Employee Login</b>
+          </span>
+          <br />
+          <!-- loading spinner -->
+
+          <div *ngIf="isLoading" style="text-align: center">
+            <app-loading-spinner></app-loading-spinner>
+          </div>
+
+          <div class="wrap-input100 validate-input">
+            <span
+              *ngIf="
+                !emploginForm.get('Email').valid &&
+                emploginForm.get('Email').touched
+              "
+              class="help-block"
+              >Enter valid email</span
+            >
+
+            <input class="input100" placeholder="Email" formControlName="Email" type="text" />
+            <span class="focus-input100"></span>
+            
+          </div>
+
+          <div class="wrap-input100 validate-input">
+            <span
+              *ngIf="
+                !emploginForm.get('emp').valid &&
+                emploginForm.get('emp').touched
+              "
+              class="help-block"
+              >Enter Valid ID!</span
+            >
+            <input placeholder="Employee id" formControlName="emp" class="input100" type="text" />
+            <span class="focus-input100"></span>
+          </div>
+
+          <div
+            class="wrap-input100 validate-input"
+            data-validate="Password is required"
+          >
+            <span
+              *ngIf="
+                !emploginForm.get('Password').valid &&
+                emploginForm.get('Password').touched
+              "
+              class="help-block"
+              >Please Enter Valid Password!</span
+            >
+            <input
+              class="input100"
+              formControlName="Password"
+              type="password"
+              placeholder="password"
+            />
+            <span class="focus-input100"></span>
+          </div>
+
+          <div class="flex-sb-m w-full p-t-3 p-b-32">
+            <div class="contact100-form-checkbox">
+              <input
+                class="input-checkbox100"
+                id="chk1"
+                type="checkbox"
+                name="chk"
+              />
+              <label class="label-checkbox100" for="chk1"> Remember me </label>
+            </div>
+            <br />
+            <div>
+              <a routerLink="/resetEmployeePassword" class="txt1">
+                Forgot Password?
+              </a>
+            </div>
+          </div>
+          <br />
+
+          <div class="container-login100-form-btn">
+            <button
+              class="login100-form-btn"
+              type="submit"
+              [disabled]="emploginForm.invalid"
+            >
+              Login
+            </button>
+          </div>
+          <br />
+          <div class="text-center p-t-46 p-b-20">
+            <span class="txt2">
+              Don't have an Account?
+              <a routerLink="/employeeregister" class="text-danger">Register</a>
+            </span>
+          </div>
+          <div class="boy">
+            <div class="login100-form-social flex-c-m">
+              <a href="#" class="login100-form-social-item">
+                <i class="fa fa-facebook-f" style="color: #4267b2"></i>
+              </a>
+
+              <a href="#" class="login100-form-social-item">
+                <i
+                  class="fa fa-twitter"
+                  style="color: #1da1f2"
+                  aria-hidden="true"
+                ></i>
+              </a>
+
+              <a href="#" class="login100-form-social-item">
+                <i
+                  class="fa fa-instagram"
+                  style="color: #8a3ab9"
+                  aria-hidden="true"
+                ></i>
+              </a>
+
+              <a href="#" class="login100-form-social-item">
+                <i
+                  class="fa fa-linkedin"
+                  style="color: #0077b5"
+                  aria-hidden="true"
+                ></i>
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div
+        class="login100-more"
+        style="
+          background-image: url('https://thesweetsetup.com/wp-content/uploads/2015/06/Ulysses-Pro-Writing-Hero-4.jpg');
+          height: 19.38cm;
+          margin-top: 1.6cm;
+        "
+      ></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,235 @@
+<section class="home-section">
+  <nav>
+    <div class="sidebar-button">
+      <i class="bi bi-ui-checks"></i>
+      <span class="dashboard">Schedule Allocation of Trainer</span>
+    </div>
+  </nav>
+  <div class="home-content">
+    <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+      <div class="card card0 border-0">
+        <div class="row d-flex">
+          <div class="border-0 px-4 py-5" id="enroll">
+            <br />
+            <form (ngSubmit)="onSchedule()" ngNativeValidate>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <br />
+                    <div class="row px-5 inpbox">
+                      <label class="mb-1">
+                        <h6 class="mb-0 text-sm">Trainer:</h6></label
+                      >
+                      <input
+                        class="mb-4"
+                        type="text"
+                        readonly
+                        name="name"
+                        [(ngModel)]="tname"
+                      />
+                    </div>
+                    <div class="row px-5 inpbox">
+                      <label class="mb-1">
+                        <h6 class="mb-0 text-sm">Highest Qualification:</h6>
+                      </label>
+                      <input
+                        class="mb-4"
+                        type="text"
+                        name="qual"
+                        [(ngModel)]="trainer.qual"
+                        readonly
+                      />
+                    </div>
+                    <div class="row px-5 inpbox">
+                      <label class="mb-1">
+                        <h6 class="mb-0 text-sm">Company:</h6>
+                      </label>
+                      <input
+                        class="mb-4"
+                        type="text"
+                        readonly
+                        name="comp"
+                        [(ngModel)]="trainer.comp"
+                        readonly
+                      />
+                    </div>
+                    <div class="row px-5 inpbox">
+                      <label class="mb-1">
+                        <h6 class="mb-0 text-sm">Type of Trainer:</h6>
+                      </label>
+                      <input
+                        class="mb-4"
+                        type="text"
+                        readonly
+                        name="typeemp"
+                        [(ngModel)]="trainer.typeemp"
+                        readonly
+                      />
+                    </div>
+                    <br />
+                    <div class="row px-5 inpbox">
+                      <label class="mb-1">
+                        <h6 class="mb-0 text-sm">Start date:</h6>
+                      </label>
+
+                      <input
+                        class="mb-4"
+                        type="date"
+                        name="startdate"
+                        (change)="filter()"
+                        [(ngModel)]="trainer.startdate"
+                        required
+                      />
+                    </div>
+                    <br />
+                    <div class="row px-5 inpbox">
+                      <label class="mb-1">
+                        <h6 class="mb-0 text-sm">End Date:</h6>
+                      </label>
+                      <input
+                        class="mb-4"
+                        type="date"
+                        name="enddate"
+                        (change)="validate()"
+                        [(ngModel)]="trainer.enddate"
+                        required
+                      />
+                    </div>
+                    <br />
+
+                    <div class="row px-5 inpbox">
+                      <label class="mb-1">
+                        <h6 class="mb-0 text-sm">Time:</h6>
+                      </label>
+                      <input
+                        type="time"
+                        name="time"
+                        class="mb-4"
+                        [(ngModel)]="trainer.time"
+                        required
+                      />
+                    </div>
+                    <br />
+                  </div>
+                  <div class="col-md-6">
+                    <br />
+                    <div class="row px-5 inpbox">
+                      <label class="mb-1">
+                        <h6 class="mb-0 text-sm">Email:</h6>
+                      </label>
+                      <input
+                        class="mb-4"
+                        readonly
+                        type="email"
+                        name="email"
+                        [(ngModel)]="trainer.email"
+                        readonly
+                      />
+                    </div>
+
+                    <div class="row px-5 inpbox">
+                      <label class="mb-1">
+                        <h6 class="mb-0 text-sm">Skill Set:</h6>
+                      </label>
+                      <input
+                        class="mb-4"
+                        type="text"
+                        name="skill"
+                        [(ngModel)]="trainer.skill"
+                        readonly
+                      />
+                    </div>
+                    <div class="row px-5 inpbox">
+                      <label class="mb-1">
+                        <h6 class="mb-0 text-sm">Designation:</h6>
+                      </label>
+                      <input
+                        class="mb-4"
+                        type="text"
+                        name="desgn"
+                        [(ngModel)]="trainer.desgn"
+                        readonly
+                      />
+                    </div>
+
+                    <div class="row px-5 inpbox">
+                      <label class="mb-1">
+                        <h6 class="mb-0 text-sm">Course Name:</h6>
+                      </label>
+                      <input
+                        class="mb-4"
+                        type="text"
+                        name="course"
+                        [(ngModel)]="trainer.course"
+                        required
+                      />
+                    </div>
+                    <br />
+                    <div class="row px-5 inpbox">
+                      <label class="mb-1">
+                        <h6 class="mb-0 text-sm">Course ID:</h6>
+                      </label>
+                      <!-- <input class="mb-4" type="text" name="courseid" [(ngModel)]="trainer.courseid" > -->
+                      <select
+                        class="form-select form-select-lg"
+                        style="padding: 9px"
+                        name="courseid"
+                        [(ngModel)]="trainer.courseid"
+                        value="select"
+                        required
+                      >
+                        <option *ngFor="let courseid of courseids" required>
+                          {{ courseid }}
+                        </option>
+                      </select>
+                    </div>
+                    <br />
+                    <div class="row px-5 inpbox">
+                      <label class="mb-1">
+                        <h6 class="mb-0 text-sm">Batch ID:</h6>
+                      </label>
+                      <input
+                        class="mb-4"
+                        type="text"
+                        name="batchid"
+                        [(ngModel)]="trainer.batchid"
+                        required
+                      />
+                    </div>
+                    <br />
+                    <div class="row px-5 inpbox">
+                      <label class="mb-1">
+                        <h6 class="mb-0 text-sm">Meeting Link:</h6>
+                      </label>
+                      <input
+                        class="mb-4"
+                        type="text"
+                        name="meetinglink"
+                        [(ngModel)]="trainer.meetinglink"
+                        required
+                      />
+                    </div>
+                    <br />
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                      <button
+                        type="submit"
+                        value="Submit"
+                        class="btn text-center btn-block"
+                        style="background-color: darkcyan; color: white"
+                      >
+                        Allocate
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

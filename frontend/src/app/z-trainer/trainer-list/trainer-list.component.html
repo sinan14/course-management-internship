@@ -1,0 +1,148 @@
+<section class="home-section">
+  <nav>
+    <div class="sidebar-button">
+      <i class="bi bi-list-check"></i>
+      <span class="dashboard"> Trainers List</span>
+    </div>
+  </nav>
+
+  <div class="home-content">
+    <div class="main-content">
+      <div class="container-fluid">
+        <div class="row table-responsive">
+          <div class="col-md-12">
+            <div>
+              <div
+                class="row no-gutters align-items-stretch"
+                *ngFor="let trainer of trainers"
+              >
+                <div class="col-md-4 text-center">
+                  <div class="card-user profile" style="margin-top: 20px">
+                    <img
+                      src="{{ imagePath }}/{{ trainer.img }}"
+                      class="img-circle"
+                      height="80px"
+                      width="80px"
+                    /><br />
+                    <div class="name">
+                      <h2>{{ trainer.fname }} {{ trainer.lname }}</h2>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h4>
+                          <span class="text-muted">
+                            {{ trainer.desgn }} at {{ trainer.comp }}
+                          </span>
+                        </h4>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="label label-default">
+                          <i class="bi bi-envelope-open"></i>
+                          <span class="d-inline-block ml-2">{{
+                            trainer.email
+                          }}</span>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <div class="label label-default">
+                          <i class="bi bi-telephone"></i>
+                          <span class="d-inline-block ml-2">{{
+                            trainer.phno
+                          }}</span>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="label label-default">
+                          <i class="bi bi-geo-alt"></i>
+                          <span class="d-inline-block ml-2">{{
+                            trainer.address
+                          }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div class="col-md-8">
+                  <div class="row">
+                    <div class="card-body col-md-12">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Highest Educational Qualification</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              disabled=""
+                              value="{{ trainer.qual }}"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Skills</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              readonly
+                              value="{{ trainer.skill }}"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>ICTAK Course Handling</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              disabled=""
+                              value="{{ trainer.course }}"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Type of Trainer</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              disabled=""
+                              value="{{ trainer.typeemp }}"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="update ml-auto mr-auto">
+                          <button
+                            class="btn btn-round"
+                            style="background-color: darkcyan"
+                            (click)="Allocate(trainer)"
+                          >
+                            Allocate
+                          </button>
+                          <button
+                            style="float: right"
+                            class="btn btn-danger btn-round"
+                            (click)="Remove(trainer)"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <hr />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,54 @@
+<div class="sidebar">
+  <div class="logo-details">
+    <i class="bx bxl-c-plus-plus"></i>
+    <span class="logo_name">ADMIN</span>
+  </div>
+  <ul class="nav-links">
+    <li>
+      <a routerLink="dashboard" *ngIf="_adminService.loggedIn()">
+        <i class="bi bi-columns-gap sidebarBtn"></i>
+        <span class="links_name">Dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="requests" *ngIf="_adminService.loggedIn()">
+        <i class="bi bi-envelope-open-fill"></i>
+        <span class="links_name">Trainer Requests</span>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="trainerlist" *ngIf="_adminService.loggedIn()">
+        <i class="bi bi-list-check"></i>
+        <span class="links_name">Trainers list</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="allocatedlist" *ngIf="_adminService.loggedIn()">
+        <i class="bi bi-ui-checks"></i>
+        <span class="links_name">Allocated Trainers</span>
+      </a>
+    </li>
+
+    <li class="log_out" *ngIf="_adminService.loggedIn()" (click)="logoutUser()">
+      <a>
+        <i class="bi bi-box-arrow-right"></i>
+        <span class="links_name">Log out</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<section class="home-section">
+  <router-outlet></router-outlet>
+</section>
+
+<script>
+  let sidebar = document.querySelector(".sidebar");
+  let sidebarBtn = document.querySelector(".sidebarBtn");
+  sidebarBtn.onclick = function () {
+    sidebar.classList.toggle("active");
+    if (sidebar.classList.contains("active")) {
+      sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+    } else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+  };
+</script>
