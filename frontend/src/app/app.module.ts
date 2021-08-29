@@ -61,7 +61,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { AdmindashboardComponent } from './student/admindashboard/admindashboard.component';
 import { EmpdashboardComponent } from './student/empdashboard/empdashboard.component';
 import { CalenderComponent } from './calender/calender.component';
-import {DatePipe} from '@angular/common'
+import { DatePipe } from '@angular/common';
 import { TrainerprofilesComponent } from './trainerprofiles/trainerprofiles.component';
 @NgModule({
   declarations: [
@@ -107,7 +107,7 @@ import { TrainerprofilesComponent } from './trainerprofiles/trainerprofiles.comp
     AdminDataTableComponent,
 
     CalenderComponent,
-    TrainerprofilesComponent
+    TrainerprofilesComponent,
   ],
   imports: [
     BrowserModule,
@@ -127,7 +127,8 @@ import { TrainerprofilesComponent } from './trainerprofiles/trainerprofiles.comp
     MatFormFieldModule,
     MatInputModule,
   ],
-  providers: [DatePipe,
+  providers: [
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
