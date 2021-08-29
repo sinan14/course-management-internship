@@ -50,7 +50,10 @@ const routes: Routes = [
       { path: 'search', component: SearchComponent },
       { path: 'allocation', component: TrainerallocationComponent },
       { path: 'allocatedlist', component: AllocatedListComponent },
-      { path: 'trainerlist', component: TrainerListComponent },
+      // {path:'allocatedlist',component:TrainerprofilesComponent},
+      // { path: 'trainerlist', component: TrainerListComponent },
+      { path: 'trainerlist', component: TrainerprofilesComponent },
+
       {
         path: 'home',
         component: DashboardComponent,

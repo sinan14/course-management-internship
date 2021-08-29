@@ -27,7 +27,6 @@
     "bootstrap": "^5.0.2",
     "date-fns": "^2.23.0",
     "rxjs": "~6.6.0",
-    
     "aos": "^2.3.4",
     "datatables.net": "^1.10.25",
     "datatables.net-dt": "^1.1.0",
