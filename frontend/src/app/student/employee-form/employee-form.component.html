@@ -64,7 +64,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Name *"
+                      placeholder="first Name *"
                       required
                       formControlName="fname"
                     />
@@ -74,25 +74,25 @@
                         employeeForm.get('fname').touched
                       "
                       class="help-block"
-                      >Name cannot be blank!</span
+                      >first Name cannot be blank!</span
                     >
                   </div>
                   <!-- email -->
                   <div class="form-group">
                     <input
-                      type="Email"
+                      type="email"
                       class="form-control"
-                      placeholder="Email *"
+                      placeholder="email *"
                       required
-                      formControlName="Email"
+                      formControlName="email"
                     />
                     <span
                       *ngIf="
-                        !employeeForm.get('Email').valid &&
-                        employeeForm.get('Email').touched
+                        !employeeForm.get('email').valid &&
+                        employeeForm.get('email').touched
                       "
                       class="help-block"
-                      >Enter Valid Email!</span
+                      >Enter Valid email!</span
                     >
                   </div>
                   <!-- DOB -->
@@ -140,6 +140,48 @@
                       >Qualification cannot be blank</span
                     >
                   </div>
+                  <!-- company -->
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="current company*"
+                      required
+                      formControlName="comp"
+                    />
+                    <span
+                      *ngIf="
+                        !employeeForm.get('comp').valid &&
+                        employeeForm.get('comp').touched
+                      "
+                      class="help-block"
+                      >company name shouldnot be empty</span
+                    >
+                  </div>
+                  <!-- course -->
+                  <div class="form-group">
+                    <select
+                      class="form-control"
+                      required
+                      formControlName="course"
+                    >
+                      <option class="hidden" value="" disabled selected>
+                        ictak course handling *
+                      </option>
+                      <option *ngFor="let c of courses" [value]="c">
+                        {{ c }}
+                      </option>
+                    </select>
+                    <span
+                      *ngIf="
+                        !employeeForm.get('course').valid &&
+                        employeeForm.get('course').touched
+                      "
+                      class="help-block"
+                      >course name shouldnot be empty</span
+                    >
+                  </div>
+
                   <!-- State -->
                   <div class="form-group">
                     <select
@@ -150,7 +192,10 @@
                       <option class="hidden" value="" disabled selected>
                         State *
                       </option>
-                      <option value="Andhra Pradesh">Andhra Pradesh</option>
+                      <option *ngFor="let s of states" [value]="s">
+                        {{ s }}
+                      </option>
+                      <!-- <option value="Andhra Pradesh">Andhra Pradesh</option>
                       <option value="Andaman and Nicobar Islands">
                         Andaman and Nicobar Islands
                       </option>
@@ -193,7 +238,7 @@
                       <option value="Tripura">Tripura</option>
                       <option value="Uttar Pradesh">Uttar Pradesh</option>
                       <option value="Uttarakhand">Uttarakhand</option>
-                      <option value="West Bengal">West Bengal</option>
+                      <option value="West Bengal">West Bengal</option> -->
                     </select>
 
                     <span
@@ -251,60 +296,111 @@
                 </div>
                 <!-- right side -->
                 <div class="col-md-6">
-                  <!-- fname -->
+                  <!-- lname -->
                   <div class="form-group">
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Name *"
+                      placeholder="last Name *"
                       required
-                      formControlName="fname"
+                      formControlName="lname"
                     />
                     <span
                       *ngIf="
-                        !employeeForm.get('fname').valid &&
-                        employeeForm.get('fname').touched
+                        !employeeForm.get('lname').valid &&
+                        employeeForm.get('lname').touched
                       "
                       class="help-block"
-                      >Name cannot be blank!</span
+                      >last Name cannot be blank!</span
                     >
                   </div>
 
-                  <!-- Phone -->
+                  <!-- phno -->
                   <div class="form-group">
                     <input
                       type="text"
                       Name="txtEmpPhone"
                       class="form-control"
-                      placeholder="Your Phone *"
+                      placeholder="phone *"
                       required
-                      formControlName="Phone"
+                      formControlName="phno"
                     />
                     <span
                       *ngIf="
-                        !employeeForm.get('Phone').valid &&
-                        employeeForm.get('Phone').touched
+                        !employeeForm.get('phno').valid &&
+                        employeeForm.get('phno').touched
                       "
                       class="help-block"
-                      >Enter valid Phone number!</span
+                      >Enter valid phno number!</span
                     >
                   </div>
-                  <!-- PassOfYear -->
+                  <!-- image -->
+                  <div class="form-group form-file">
+                    <input
+                      type="file"
+                      class="form-file-input form-control"
+                      (change)="selectImage($event)"
+                      accept="image/png, image/gif, image/jpeg"
+                    />
+                    <span
+                      *ngIf="
+                        !employeeForm.get('img').valid &&
+                        employeeForm.get('img').touched
+                      "
+                      class="help-block"
+                      >image cannot be empty!</span
+                    >
+                  </div>
+
+                  <!-- company -->
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="designation*"
+                      required
+                      formControlName="desgn"
+                    />
+                    <span
+                      *ngIf="
+                        !employeeForm.get('desgn').valid &&
+                        employeeForm.get('desgn').touched
+                      "
+                      class="help-block"
+                      >designation required</span
+                    >
+                  </div>
+                  <!-- skill -->
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="skill sets *"
+                      required
+                      formControlName="skill"
+                    />
+                    <span
+                      *ngIf="
+                        !employeeForm.get('skill').valid &&
+                        employeeForm.get('skill').touched
+                      "
+                      class="help-block"
+                      >skill set is required</span
+                    >
+                  </div>
+                  <!-- address -->
                   <div class="form-group">
                     <input
                       class="form-control"
-                      type="number"
-                      min="2000"
-                      max="2020"
-                      step="1"
-                      placeholder="when you awarded highest degree "
+                      type="text"
+                      placeholder="address "
                       required
-                      formControlName="PassOfYear"
+                      formControlName="address"
                     />
                     <span
                       *ngIf="
-                        !employeeForm.get('PassOfYear').valid &&
-                        employeeForm.get('PassOfYear').touched
+                        !employeeForm.get('address').valid &&
+                        employeeForm.get('address').touched
                       "
                       class="help-block"
                       >choose a valid year!</span
@@ -351,6 +447,21 @@
                   <!-- button -->
                   <button type="submit" class="btnRegister">register</button>
                 </div>
+                <!-- <div class="col-md-12">
+                  <label for="inputCourses" class="form-label">ICTAK Course handling</label>
+                  <ng-select [items]="categories"  
+                             bindLabel="name"  
+                             placeholder="Select Category" 
+                             name="ictakcourses" 
+                             appendTo="body"    
+                             [multiple]="true"  
+                              required>  
+              </ng-select>  
+              <small class="form-text text-muted" *ngIf="
+              !employeeForm.get('course').valid &&
+              employeeForm.get('course').touched
+            " class="form-label text-danger">Select atleast one course</small>
+                </div> -->
               </div>
             </form>
           </div>

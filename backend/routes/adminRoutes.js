@@ -1,22 +1,21 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
-
-const multer = require("multer");
-const ImageDataURI = require("image-data-uri");
 const adminRouter = express.Router();
 const userdata = require("../model/userdata");
 const allocateddata = require("../model/allocateddata");
 const enrollmentdata = require("../model/enrollmentdata");
 const trainerdata = require("../model/trainerdata");
-var storage = multer.diskStorage({
-  destination: function (req, res, cb) {
-    cb(null, "./public/images/requests");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
+// const multer = require("multer");
+// const ImageDataURI = require("image-data-uri");
+// var storage = multer.diskStorage({
+//   destination: function (req, res, cb) {
+//     cb(null, "./public/images/requests");
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.originalname);
+//   },
+// });
 
 adminRouter.post("/login", function (req, res) {
   // res.status(200);
@@ -32,7 +31,7 @@ adminRouter.post("/login", function (req, res) {
 
     let payload = { subject: adminemail + password };
     let token = jwt.sign(payload, "secretKey");
-    res.status(200).send({ token,email:admin.adminemail });
+    res.status(200).send({ token, email: admin.adminemail });
   }
 });
 

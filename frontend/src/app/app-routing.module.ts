@@ -20,10 +20,15 @@ import { ScheduleComponent } from './z-trainer/schedule/schedule.component';
 import { TrainerHomeComponent } from './z-trainer/trainer-home/trainer-home.component';
 import { CalenderComponent } from './calender/calender.component';
 import { TrainerprofilesComponent } from './trainerprofiles/trainerprofiles.component';
+import { LoginStudentComponent } from './student/login-student/login-student.component';
+import { EmployeeFormComponent } from './student/employee-form/employee-form.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'cc', component: CalenderComponent },
   { path: 'p', component: TrainerprofilesComponent },
+  { path: 'l', component: LoginStudentComponent },
+  { path: 'e', component: EmployeeFormComponent },
+  
 
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

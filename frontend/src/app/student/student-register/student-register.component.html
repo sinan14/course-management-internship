@@ -6,7 +6,6 @@
       <p>You are just one step away from walking with us!</p>
       <button type="submit"><a routerLink="/login">login</a></button>
     </div>
-
     <div class="col-xs-12 col-sm-10 col-md-9 register-right">
       <ul
         style="width: 200px"
@@ -49,10 +48,10 @@
         >
           <h3 class="register-heading">Enrollment Form</h3>
           <!-- loading spinner -->
-          <div *ngIf="isLoading" style="text-align: center;">
+          <div *ngIf="isLoading" style="text-align: center">
             <app-loading-spinner></app-loading-spinner>
           </div>
- 
+
           <!-- form open -->
           <form [formGroup]="registerForm" (ngSubmit)="registerStudent()">
             <div class="row register-form">
@@ -248,7 +247,6 @@
                   >
                 </div>
                 <!-- image -->
-
                 <div class="form-group form-file">
                   <input
                     type="file"
@@ -256,12 +254,6 @@
                     (change)="selectImage($event)"
                     accept="image/png, image/gif, image/jpeg"
                   />
-                  <!-- <label class="form-file-label" for="image">
-                    <span class="form-file-text custom-file-label"
-                      >Upload photo...</span
-                    >
-                  </label> -->
-
                   <span
                     *ngIf="
                       !registerForm.get('img').valid &&

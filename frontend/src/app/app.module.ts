@@ -63,6 +63,7 @@ import { EmpdashboardComponent } from './student/empdashboard/empdashboard.compo
 import { CalenderComponent } from './calender/calender.component';
 import { DatePipe } from '@angular/common';
 import { TrainerprofilesComponent } from './trainerprofiles/trainerprofiles.component';
+import { LoginStudentComponent } from './student/login-student/login-student.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,6 +109,7 @@ import { TrainerprofilesComponent } from './trainerprofiles/trainerprofiles.comp
 
     CalenderComponent,
     TrainerprofilesComponent,
+    LoginStudentComponent,
   ],
   imports: [
     BrowserModule,

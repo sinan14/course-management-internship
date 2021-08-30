@@ -1,23 +1,8 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer");
-
 const multer = require("multer");
-const ImageDataURI = require("image-data-uri");
 const searchRouter = express.Router();
-const userdata = require("../model/userdata");
-const allocateddata = require("../model/allocateddata");
-const enrollmentdata = require("../model/enrollmentdata");
 const trainerdata = require("../model/trainerdata");
-
-var storage = multer.diskStorage({
-  destination: function (req, res, cb) {
-    cb(null, "./public/images/requests");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
 
 searchRouter.get("/:name", (req, res) => {
   //console.log(req.params);

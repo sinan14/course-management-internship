@@ -1,8 +1,19 @@
-<div class="limiter">
-  <div class="container-login100">
-    <div class="wrap-login100">
-      <div>
-        <div class="register" id="ul1">
+<section id="login-sec">
+  <div class="card card0 border-0">
+    <div class="row d-flex">
+      <div class="col-lg-6">
+        <div class="card1 pb-5">
+          <div class="row">
+            <!-- i deleted the  logo since a logo in nav bar -->
+            <div class="logo"></div>
+          </div>
+          <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
+            <img src="https://i.imgur.com/uNGdWHi.png" class="image" />
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div id="ul1">
           <ul
             style="width: 200px"
             class="nav nav-tabs nav-justified"
@@ -16,8 +27,9 @@
                 routerLink="/employeelogin"
                 role="tab"
                 aria-selected="true"
-                >Employee</a
               >
+                Employee
+              </a>
             </li>
             <li class="nav-item">
               <a
@@ -26,153 +38,129 @@
                 routerLink="/login"
                 role="tab"
                 aria-selected="false"
+                >student</a
               >
-                Student
-              </a>
             </li>
           </ul>
         </div>
-        <form
-          class="login100-form validate-form"
-          [formGroup]="emploginForm"
-          (ngSubmit)="loginUser()"
-        >
-          <span class="login100-form-title p-b-43">
-            <b> Employee Login</b>
-          </span>
-          <br />
-          <!-- loading spinner -->
+        <div id="heading">
+          <h3><strong>Sign In As Employee</strong></h3>
+        </div>
 
-          <div *ngIf="isLoading" style="text-align: center">
-            <app-loading-spinner></app-loading-spinner>
+        <div class="card2 card border-0 px-4 py-5">
+          <div class="row mb-4 px-3">
+            <h6 class="mb-0 mr-4 mt-2">Sign in with</h6>
+            <div class="facebook text-center mr-3">
+              <div class="fa fa-facebook"></div>
+            </div>
+            <div class="twitter text-center mr-3">
+              <div class="fa fa-twitter"></div>
+            </div>
+            <div class="linkedin text-center mr-3">
+              <div class="fa fa-linkedin"></div>
+            </div>
           </div>
-
-          <div class="wrap-input100 validate-input">
-            <span
-              *ngIf="
-                !emploginForm.get('Email').valid &&
-                emploginForm.get('Email').touched
-              "
-              class="help-block"
-              >Enter valid email</span
-            >
-
-            <input class="input100" placeholder="Email" formControlName="Email" type="text" />
-            <span class="focus-input100"></span>
-            
+          <div class="row px-3 mb-4">
+            <div class="line"></div>
+            <small class="or text-center">Or</small>
+            <div class="line"></div>
           </div>
-
-          <div class="wrap-input100 validate-input">
-            <span
-              *ngIf="
-                !emploginForm.get('emp').valid &&
-                emploginForm.get('emp').touched
-              "
-              class="help-block"
-              >Enter Valid ID!</span
-            >
-            <input placeholder="Employee id" formControlName="emp" class="input100" type="text" />
-            <span class="focus-input100"></span>
-          </div>
-
-          <div
-            class="wrap-input100 validate-input"
-            data-validate="Password is required"
-          >
-            <span
-              *ngIf="
-                !emploginForm.get('Password').valid &&
-                emploginForm.get('Password').touched
-              "
-              class="help-block"
-              >Please Enter Valid Password!</span
-            >
-            <input
-              class="input100"
-              formControlName="Password"
-              type="password"
-              placeholder="password"
-            />
-            <span class="focus-input100"></span>
-          </div>
-
-          <div class="flex-sb-m w-full p-t-3 p-b-32">
-            <div class="contact100-form-checkbox">
+          <form [formGroup]="emploginForm" (ngSubmit)="loginUser()">
+            <div class="row px-3">
+              <label class="mb-1">
+                <h6 class="mb-0 text-sm">Email Address</h6>
+              </label>
               <input
-                class="input-checkbox100"
-                id="chk1"
-                type="checkbox"
-                name="chk"
+                class="mb-4"
+                type="text"
+                formControlName="email"
+                placeholder="Enter a valid email address"
               />
-              <label class="label-checkbox100" for="chk1"> Remember me </label>
+              <span
+                *ngIf="
+                  !emploginForm.get('email').valid &&
+                  emploginForm.get('email').touched
+                "
+                class="help-block"
+                >enter valid email!</span
+              >
             </div>
-            <br />
-            <div>
-              <a routerLink="/resetEmployeePassword" class="txt1">
-                Forgot Password?
-              </a>
+            <div class="row px-3">
+              <label class="mb-1">
+                <h6 class="mb-0 text-sm">Employee Id</h6>
+              </label>
+              <input
+                class="mb-4"
+                type="text"
+                formControlName="employeeId"
+                placeholder="Enter Id"
+              />
+              <span
+                *ngIf="
+                  !emploginForm.get('employeeId').valid &&
+                  emploginForm.get('employeeId').touched
+                "
+                class="help-block"
+                >enter valid Id!</span
+              >
             </div>
-          </div>
-          <br />
-
-          <div class="container-login100-form-btn">
-            <button
-              class="login100-form-btn"
-              type="submit"
-              [disabled]="emploginForm.invalid"
+            <div class="row px-3">
+              <label class="mb-1">
+                <h6 class="mb-0 text-sm">Password</h6>
+              </label>
+              <input
+                class="mb-4"
+                type="password"
+                formControlName="password"
+                placeholder="Enter password"
+              />
+              <span
+                *ngIf="
+                  !emploginForm.get('password').valid &&
+                  emploginForm.get('password').touched
+                "
+                class="help-block"
+                >Please enter valid password!</span
+              >
+            </div>
+            <div class="row px-3 mb-4">
+              <div class="custom-control custom-checkbox custom-control-inline">
+                <input
+                  id="chk1"
+                  type="checkbox"
+                  name="chk"
+                  class="custom-control-input"
+                />
+                <label for="chk1" class="custom-control-label text-sm ml-3"
+                  >Remember me</label
+                >
+              </div>
+              <a
+                [routerLink]="['/resetEmployeePassword']"
+                class="ml-auto mb-0 text-sm"
+                >Forgot Password?</a
+              >
+            </div>
+            <div class="row mb-3 px-3">
+              <button
+                type="submit"
+                class="btn btn-success float-right text-center"
+                [disabled]="emploginForm.invalid"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+          <div class="row mb-4 px-3">
+            <small class="font-weight-bold"
+              >Don't have an account?
+              <a [routerLink]="['/employeeregister']" class="text-danger"
+                >Register</a
+              ></small
             >
-              Login
-            </button>
           </div>
-          <br />
-          <div class="text-center p-t-46 p-b-20">
-            <span class="txt2">
-              Don't have an Account?
-              <a routerLink="/employeeregister" class="text-danger">Register</a>
-            </span>
-          </div>
-          <div class="boy">
-            <div class="login100-form-social flex-c-m">
-              <a href="#" class="login100-form-social-item">
-                <i class="fa fa-facebook-f" style="color: #4267b2"></i>
-              </a>
-
-              <a href="#" class="login100-form-social-item">
-                <i
-                  class="fa fa-twitter"
-                  style="color: #1da1f2"
-                  aria-hidden="true"
-                ></i>
-              </a>
-
-              <a href="#" class="login100-form-social-item">
-                <i
-                  class="fa fa-instagram"
-                  style="color: #8a3ab9"
-                  aria-hidden="true"
-                ></i>
-              </a>
-
-              <a href="#" class="login100-form-social-item">
-                <i
-                  class="fa fa-linkedin"
-                  style="color: #0077b5"
-                  aria-hidden="true"
-                ></i>
-              </a>
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
-
-      <div
-        class="login100-more"
-        style="
-          background-image: url('https://thesweetsetup.com/wp-content/uploads/2015/06/Ulysses-Pro-Writing-Hero-4.jpg');
-          height: 19.38cm;
-          margin-top: 1.6cm;
-        "
-      ></div>
     </div>
   </div>
-</div>
+</section>
