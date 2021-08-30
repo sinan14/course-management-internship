@@ -42,7 +42,7 @@ import { StudentServiceService } from './st-service/student.service';
 import { SafePipe } from './st-service/safe.pipe';
 import { EmployeeService } from './st-service/employee.service';
 
-// import { AdminDataTableComponent } from './student/admin-data-table/admin-data-table.component';
+import { AdminDataTableComponent } from './student/admin-data-table/admin-data-table.component';
 import { AllEmployeesComponent } from './student/All-empleyees/all-employees.component';
 import { StudentRegisterComponent } from './student/student-register/student-register.component';
 import { NavHeaderComponent } from './student/nav-header/nav-header.component';
@@ -55,15 +55,17 @@ import { EmployeeFormComponent } from './student/employee-form/employee-form.com
 import { LoginEmployeeComponent } from './student/login-employee/login-employee.component';
 import { ResetEmpPasswordComponent } from './student/reset-emp-password/reset-emp-password.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-// import { NewdatatableComponent } from './student/newdatatable/newdatatable.component';
+import { NewdatatableComponent } from './student/newdatatable/newdatatable.component';
 import { EmpProfileComponent } from './student/emp-profile/emp-profile.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AdmindashboardComponent } from './student/admindashboard/admindashboard.component';
 import { EmpdashboardComponent } from './student/empdashboard/empdashboard.component';
-import { CalenderComponent } from './calender/calender.component';
 import { DatePipe } from '@angular/common';
 import { TrainerprofilesComponent } from './trainerprofiles/trainerprofiles.component';
 import { LoginStudentComponent } from './student/login-student/login-student.component';
+import { MainHomeComponent } from './main-home/main-home.component';
+import { MainHeaderComponent } from './main-header/main-header.component';
+import { MainFooterComponent } from './main-footer/main-footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,7 +95,7 @@ import { LoginStudentComponent } from './student/login-student/login-student.com
     NavHeaderComponent,
     StudentProfileComponent,
     SafePipe,
-    // NewdatatableComponent,
+    NewdatatableComponent,
     EmpdashboardComponent,
     AllStudentsComponent,
     AllEmployeesComponent,
@@ -105,11 +107,13 @@ import { LoginStudentComponent } from './student/login-student/login-student.com
     PageNotFoundComponent,
     EmpProfileComponent,
     AdmindashboardComponent,
-    // AdminDataTableComponent,
+    AdminDataTableComponent,
 
-    CalenderComponent,
     TrainerprofilesComponent,
     LoginStudentComponent,
+    MainHomeComponent,
+    MainHeaderComponent,
+    MainFooterComponent,
   ],
   imports: [
     BrowserModule,
