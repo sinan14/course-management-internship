@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
-
 const StudentSchema = new Schema({
   Name: {
     type: String,
@@ -36,9 +34,7 @@ const StudentSchema = new Schema({
     type: String,
     required: true,
   },
-  SkillSet: {
-    type: String,
-  },
+
   HighestQualification: {
     type: String,
     required: true,
@@ -48,10 +44,7 @@ const StudentSchema = new Schema({
     type: Number,
     required: true,
   },
-  EmploymentStatus: {
-    type: String,
-    required: true,
-  },
+
   State: {
     type: String,
     required: true,
@@ -80,7 +73,6 @@ const StudentSchema = new Schema({
     type: String,
     required: true,
   },
-  ExitExamMark: {type:Number},
 });
 
 module.exports = mongoose.model("Student", StudentSchema);

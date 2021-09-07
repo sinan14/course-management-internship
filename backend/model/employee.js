@@ -1,20 +1,16 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-
 const EmployeeSchema = new Schema({
   Name: {
     type: String,
   },
   Email: {
     type: String,
-
     unique: true,
   },
   Phone: {
     type: String,
-
-    // unique: true,
   },
   Gender: {
     type: String,

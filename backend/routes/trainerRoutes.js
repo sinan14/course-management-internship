@@ -21,7 +21,6 @@ var storage = multer.diskStorage({
 
 trainerRouter.post("/signup", function (req, res) {
   trainer = req.body.trainer;
-  //console.log(trainer.traineremail);
   var newuser = {
     useremail: trainer.traineremail,
     username: trainer.trainerusername,
@@ -40,13 +39,11 @@ trainerRouter.post("/signup", function (req, res) {
         //console.log("User already exixts");
         res.status(401).send(false);
       }
-      //console.log(user);
     });
 });
 trainerRouter.post("/signin", function (req, res) {
   res.status(200);
   trainer = req.body.trainer;
-  //console.log(trainer);
   userdata
     .findOne({ useremail: trainer.traineremail })
     .then(function (data) {
@@ -54,7 +51,6 @@ trainerRouter.post("/signin", function (req, res) {
         var payload = { subject: data.useremail };
         var token = jwt.sign(payload, "secretkey");
         res.status(200).send({ token, email: trainer.traineremail });
-        // res.status(200);
       } else {
         res.status(401).send("Invalid login");
       }
@@ -67,60 +63,46 @@ trainerRouter.post("/signin", function (req, res) {
 
 trainerRouter.post("/enroll", (req, res) => {
   var upload = multer({ storage: storage }).single("img");
+
   upload(req, res, (err) => {
     if (err) {
       console.log(err);
     } else {
-      if (req.file) {
-        var item = {
-          fname: req.body.fname,
-          lname: req.body.lname,
-          address: req.body.address,
-          email: req.body.email,
-          phno: req.body.phno,
-          qual: req.body.qual,
-          skill: req.body.skill,
-          comp: req.body.comp,
-          desgn: req.body.desgn,
-          course: req.body.course,
-          img: req.file.filename,
-        };
-      } else {
-        var item = {
-          fname: req.body.fname,
-          lname: req.body.lname,
-          address: req.body.address,
-          email: req.body.email,
-          phno: req.body.phno,
-          qual: req.body.qual,
-          skill: req.body.skill,
-          comp: req.body.comp,
-          desgn: req.body.desgn,
-          course: req.body.course,
-          img: "",
-        };
-        //console.log("error in saving the image");
-      }
-      var enrollment = new enrollmentdata(item);
-      enrollment.save()
-      .then( res =>{
-        res.send(true)
-      })
-      .catch( err => {
-        res.send(false)
-      });
+      var item = {
+        fname: req.body.fname,
+        lname: req.body.lname,
+        address: req.body.address,
+        email: req.body.email,
+        phno: req.body.phno,
+        qual: req.body.qual,
+        skill: req.body.skill,
+        comp: req.body.comp,
+        desgn: req.body.desgn,
+        course: req.body.course,
+        img: req.file.filename,
+      };
     }
+    var enrollment = new enrollmentdata(item);
+    enrollment
+      .save()
+      .then((res) => {
+        res.send(true);
+      })
+      .catch((err) => {
+        res.send(false);
+      });
   });
 });
 
 trainerRouter.get("/all", (req, res) => {
-  trainerdata.find()
-  .then(trainers => {
-    res.send(trainers);
-  })
-  .catch(err =>{
-    res.send(false)
-  });
+  trainerdata
+    .find()
+    .then((trainers) => {
+      res.send(trainers);
+    })
+    .catch((err) => {
+      res.send(false);
+    });
 });
 
 trainerRouter.get("/:email/one", (req, res) => {
@@ -133,6 +115,7 @@ trainerRouter.post("/:email/edit", (req, res) => {
   //console.log(req.body.img);
 
   if (req.body.url !== "") {
+    
     var imageName = `${req.body.email}_${req.body.img}`;
     ImageDataURI.outputFile(
       req.body.url,
@@ -141,6 +124,7 @@ trainerRouter.post("/:email/edit", (req, res) => {
   } else {
     imageName = req.body.img;
   }
+
   trainerdata
     .updateMany(
       { email: req.body.email },

@@ -159,7 +159,7 @@ adminRouter.delete("/trainers/:email/remove", (req, res) => {
 adminRouter.post("/trainers/:email/allocate", async (req, res) => {
   //console.log('allocated data '+req.body)
   var allocatedlist = {
-    id: req.body.id,
+    // id: req.body.id,
     fname: req.body.fname,
     lname: req.body.lname,
     email: req.body.email,

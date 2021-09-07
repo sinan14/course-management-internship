@@ -23,9 +23,9 @@ router.post("/register", upload.single("img"), (req, res) => {
     DOB: req.body.DOB,
     Course: req.body.Course,
     HighestQualification: req.body.HighestQualification,
-    SkillSet: req.body.SkillSet,
+
     PassOfYear: req.body.PassOfYear,
-    EmploymentStatus: req.body.EmploymentStatus,
+
     State: req.body.State,
     District: req.body.District,
     Post: req.body.Post,
@@ -37,7 +37,7 @@ router.post("/register", upload.single("img"), (req, res) => {
     ApprovalDate: req.body.ApprovalDate,
     Password: "NewRegister@ict",
     Suid: "New Register",
-    ExitExamMark: 0,
+
     image: {
       data: fs.readFileSync(req.file.path),
       contentType: "image",
