@@ -1,8 +1,9 @@
+<app-header></app-header>
 <section id="section">
   <div class="container-fluid">
-    <h4 style="text-align: center;">EMPLOYEE LIST</h4>
+    <h4 style="text-align: center">EMPLOYEE LIST</h4>
     <!-- spinner -->
-    <div *ngIf="isLoading" style="text-align: center;">
+    <div *ngIf="isLoading" style="text-align: center">
       <app-loading-spinner></app-loading-spinner>
     </div>
     <table
@@ -33,7 +34,7 @@
           <td>{{ Employee.DOB | date }}</td>
           <td>{{ Employee.Gender }}</td>
           <td>{{ Employee.HighestQualification }}</td>
-          <td>{{Employee.SkillSet}}</td>
+          <td>{{ Employee.SkillSet }}</td>
           <td>{{ Employee.State }}</td>
           <td>
             <button
@@ -49,3 +50,4 @@
     </table>
   </div>
 </section>
+<app-footer></app-footer>

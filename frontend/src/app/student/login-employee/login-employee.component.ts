@@ -22,18 +22,18 @@ export class LoginEmployeeComponent implements OnInit {
   ) {}
 
   ngOnInit() {}
-  emploginForm = this._fb.group({
+  empLoginForm = this._fb.group({
     Email: ['', [Validators.pattern(this.emailReg), Validators.required]],
     Password: ['', [Validators.pattern(this.passwordReg), Validators.required]],
-    emp: ['', [Validators.required, Validators.pattern(this.empReg)]],
+    // emp: ['', [Validators.required, Validators.pattern(this.empReg)]],
   });
 
   loginUser() {
-    if (!this.emploginForm.valid) {
+    if (!this.empLoginForm.valid) {
       return;
     }
     this.isLoading = true;
-    this._auth.loginEmployee(this.emploginForm.value).subscribe(
+    this._auth.loginEmployee(this.empLoginForm.value).subscribe(
       (response) => {
         this.isLoading = false;
         if (response.status) {
@@ -72,7 +72,7 @@ export class LoginEmployeeComponent implements OnInit {
           this.isLoading = false;
           Swal.fire('Warning!!', 'User not found🤷‍♂️🤷‍♂️🤷‍♀️!', 'error').then(
             (refresh) => {
-              this.emploginForm.reset();
+              this.empLoginForm.reset();
             }
           );
         }
@@ -87,7 +87,7 @@ export class LoginEmployeeComponent implements OnInit {
           text: 'some internal error',
           icon: 'error',
         }).then(() => {
-          this.emploginForm.reset();
+          this.empLoginForm.reset();
         });
       }
     );

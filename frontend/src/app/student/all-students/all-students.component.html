@@ -1,3 +1,4 @@
+<app-header></app-header>
 <section id="section">
   <!-- <div class="card"> -->
   <!-- <div class="card-header">All Students</div> -->
@@ -5,11 +6,12 @@
   <div class="container-fluid">
     <h4 style="text-align: center">STUDENTS LIST</h4>
     <!-- loading-spinner -->
-    <div *ngIf="isLoading" style="text-align: center;">
+    <div *ngIf="isLoading" style="text-align: center">
       <app-loading-spinner></app-loading-spinner>
     </div>
-    <table 
-      class="table
+    <table
+      class="
+        table
         table-primary
         table-hover
         table-responsive-sm
@@ -78,3 +80,4 @@
   </div>
   <!-- </div> -->
 </section>
+<app-footer></app-footer>

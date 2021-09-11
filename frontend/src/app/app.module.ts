@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -50,11 +51,11 @@ import { StudentProfileComponent } from './student/student-profile/student-profi
 import { AllStudentsComponent } from './student/all-students/all-students.component';
 import { StudentPaymentComponent } from './student/student-payment/student-payment.component';
 import { ResetPasswordComponent } from './student/reset-password/reset-password.component';
-import { ErrorsComponent } from './Errors/errors.component';
+import { ErrorsComponent } from './shared/Errors/errors.component';
 import { EmployeeFormComponent } from './student/employee-form/employee-form.component';
 import { LoginEmployeeComponent } from './student/login-employee/login-employee.component';
 import { ResetEmpPasswordComponent } from './student/reset-emp-password/reset-emp-password.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './student/page-not-found/page-not-found.component';
 import { NewdatatableComponent } from './student/newdatatable/newdatatable.component';
 import { EmpProfileComponent } from './student/emp-profile/emp-profile.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
@@ -63,9 +64,13 @@ import { EmpdashboardComponent } from './student/empdashboard/empdashboard.compo
 import { DatePipe } from '@angular/common';
 import { TrainerprofilesComponent } from './trainerprofiles/trainerprofiles.component';
 import { LoginStudentComponent } from './student/login-student/login-student.component';
-import { MainHomeComponent } from './main-home/main-home.component';
-import { MainHeaderComponent } from './main-header/main-header.component';
-import { MainFooterComponent } from './main-footer/main-footer.component';
+import { MainHomeComponent } from './shared/main-home/main-home.component';
+import { MainHeaderComponent } from './shared/main-header/main-header.component';
+import { MainFooterComponent } from './shared/main-footer/main-footer.component';
+import { PanelAdminComponent } from './student/panel-admin/panel-admin.component';
+import { PanelEmployeeComponent } from './student/panel-employee/panel-employee.component';
+import { AdmSideNavComponent } from './student/adm-side-nav/adm-side-nav.component';
+import { EmpSideNavComponent } from './student/emp-side-nav/emp-side-nav.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,8 +119,14 @@ import { MainFooterComponent } from './main-footer/main-footer.component';
     MainHomeComponent,
     MainHeaderComponent,
     MainFooterComponent,
+    PanelAdminComponent,
+    PanelEmployeeComponent,
+    AdmSideNavComponent,
+    EmpSideNavComponent,
   ],
   imports: [
+    MatSidenavModule,
+
     BrowserModule,
     AppRoutingModule,
     FormsModule,

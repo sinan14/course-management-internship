@@ -36,6 +36,7 @@ export class EnrollmentComponent implements OnInit {
   course = '';
   img: any;
   url: any = './assets/trainer.jpg';
+
   onFileSelected(event: any) {
     if (event.target.files) {
       var reader = new FileReader();

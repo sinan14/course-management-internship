@@ -33,11 +33,11 @@ import { StudentProfileComponent } from './student/student-profile/student-profi
 import { AllStudentsComponent } from './student/all-students/all-students.component';
 import { StudentPaymentComponent } from './student/student-payment/student-payment.component';
 import { ResetPasswordComponent } from './student/reset-password/reset-password.component';
-import { ErrorsComponent } from './Errors/errors.component';
+import { ErrorsComponent } from './shared/Errors/errors.component';
 import { EmployeeFormComponent } from './student/employee-form/employee-form.component';
 import { LoginEmployeeComponent } from './student/login-employee/login-employee.component';
 import { ResetEmpPasswordComponent } from './student/reset-emp-password/reset-emp-password.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './student/page-not-found/page-not-found.component';
 import { NewdatatableComponent } from './student/newdatatable/newdatatable.component';
 import { EmpProfileComponent } from './student/emp-profile/emp-profile.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
@@ -45,12 +45,30 @@ import { AdmindashboardComponent } from './student/admindashboard/admindashboard
 import { EmpdashboardComponent } from './student/empdashboard/empdashboard.component';
 import { DatePipe } from '@angular/common';
 import { LoginStudentComponent } from './student/login-student/login-student.component';
+import { PanelAdminComponent } from './student/panel-admin/panel-admin.component';
+import { AdmSideNavComponent } from './student/adm-side-nav/adm-side-nav.component';
 const routes: Routes = [
-  // { path: '', component: LoginComponent },
-  { path: 'p', component: TrainerprofilesComponent },
-  { path: 'l', component: LoginStudentComponent },
-  { path: 'e', component: EmployeeFormComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
+
+  {
+    path: 'adm',
+    component: AdmSideNavComponent,
+    children: [
+      { path: '', component: PanelAdminComponent, pathMatch: 'full' },
+      { path: 'dashboard', component: PanelAdminComponent },
+      { path: 'trainers', component: TrainerprofilesComponent },
+      { path: 'trainer/requests', component: RequestsComponent },
+      { path: 'trainer/approve', component: TrainerapproveComponent },
+      { path: 'trainer/search', component: SearchComponent },
+      { path: 'trainer/allocate', component: TrainerallocationComponent },
+      { path: 'trainer/allocatedList', component: AllocatedListComponent },
+      { path: 'students', component: NewdatatableComponent },
+      { path: 'students/approve', component: AdminDataTableComponent },
+    ],
+  },
+  { path: 'p', component: TrainerprofilesComponent },
+  { path: 'login', component: LoginStudentComponent },
+  { path: 'e', component: EmployeeFormComponent },
   { path: 'home', component: HomeComponent },
   { path: 'register', component: StudentRegisterComponent },
   { path: 'employeeregister', component: EmployeeFormComponent },
@@ -70,9 +88,9 @@ const routes: Routes = [
 
     component: AdmindashboardComponent,
   },
-  {path: 'employee-panel',component: EmpdashboardComponent,},
-  {path: 'approve',component: AdminDataTableComponent,},
-  {path: 'employees',component: AllEmployeesComponent,},
+  { path: 'employee-panel', component: EmpdashboardComponent },
+
+  { path: 'employees', component: AllEmployeesComponent },
   {
     path: 'employees/:_id',
 
@@ -96,10 +114,10 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   { path: 'students/:_id/pay', component: StudentPaymentComponent },
+  //trainer management system
 
-
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
+  // { path: 'login', component: LoginComponent },
+  // { path: 'signup', component: SignupComponent },
   { path: 'aboutus', component: AboutusComponent },
   {
     path: 'trainer',
@@ -116,23 +134,19 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     children: [
+      { path: '', component: DashboardComponent, pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'requests', component: RequestsComponent },
       { path: 'approval', component: TrainerapproveComponent },
-      { path: '', component: DashboardComponent },
       { path: 'search', component: SearchComponent },
       { path: 'allocation', component: TrainerallocationComponent },
       { path: 'allocatedlist', component: AllocatedListComponent },
       // {path:'allocatedlist',component:TrainerprofilesComponent},
       // { path: 'trainerlist', component: TrainerListComponent },
       { path: 'trainerlist', component: TrainerprofilesComponent },
-
-      {
-        path: 'home',
-        component: DashboardComponent,
-      },
     ],
   },
+
   //error handling
   { path: 'error', component: ErrorsComponent },
   { path: '**', component: PageNotFoundComponent },

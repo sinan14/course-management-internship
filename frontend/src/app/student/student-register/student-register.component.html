@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="register">
   <div class="row">
     <div class="col-md-3 register-left">
@@ -142,26 +143,7 @@
                     >course cannot be empty!</span
                   >
                 </div>
-                <!-- date of birth -->
-                <div class="form-group">
-                  <input
-                    class="form-control"
-                    placeholder="Date of Birth"
-                    min="1990-01-01"
-                    max="2005-01-01"
-                    formControlName="DOB"
-                    onfocus="(this.type='date')"
-                    onblur="(this.type='text')"
-                  />
-                  <span
-                    *ngIf="
-                      !registerForm.get('DOB').valid &&
-                      registerForm.get('DOB').touched
-                    "
-                    class="help-block"
-                    >DOB cannot be empty!</span
-                  >
-                </div>
+
                 <!-- state -->
                 <div class="form-group">
                   <select
@@ -246,21 +228,24 @@
                     >enter a valid email!</span
                   >
                 </div>
-                <!-- image -->
-                <div class="form-group form-file">
+                <!-- date of birth -->
+                <div class="form-group">
                   <input
-                    type="file"
-                    class="form-file-input form-control"
-                    (change)="selectImage($event)"
-                    accept="image/png, image/gif, image/jpeg"
+                    class="form-control"
+                    placeholder="Date of Birth"
+                    min="1990-01-01"
+                    max="2005-01-01"
+                    formControlName="DOB"
+                    onfocus="(this.type='date')"
+                    onblur="(this.type='text')"
                   />
                   <span
                     *ngIf="
-                      !registerForm.get('img').valid &&
-                      registerForm.get('img').touched
+                      !registerForm.get('DOB').valid &&
+                      registerForm.get('DOB').touched
                     "
                     class="help-block"
-                    >image cannot be empty!</span
+                    >DOB cannot be empty!</span
                   >
                 </div>
 
@@ -284,7 +269,24 @@
                     >choose a valid year!</span
                   >
                 </div>
-                <!-- skillset -->
+                <!-- image -->
+                <div class="form-group form-file">
+                  <input
+                    type="file"
+                    class="form-file-input form-control"
+                    (change)="selectImage($event)"
+                    accept="image/png, image/gif, image/jpeg"
+                  />
+                  <span
+                    *ngIf="
+                      !registerForm.get('img').valid &&
+                      registerForm.get('img').touched
+                    "
+                    class="help-block"
+                    >image cannot be empty!</span
+                  >
+                </div>
+                <!-- skillset
                 <div class="form-group">
                   <input
                     type="text"
@@ -300,8 +302,9 @@
                     class="help-block"
                     >skills cannot be empty</span
                   >
-                </div>
+                </div> -->
                 <!-- Employment status -->
+                <!--
                 <div class="form-group">
                   <select
                     class="form-control"
@@ -322,7 +325,8 @@
                     class="help-block"
                     >status cannot be empty!</span
                   >
-                </div>
+                </div> 
+              -->
                 <!-- District -->
                 <div class="form-group">
                   <!-- <select
@@ -373,10 +377,13 @@
                   value="Register"
                 />
               </div>
+              <span *ngIf="registerForm.invalid" class="help-block"
+                >enter valid data!</span
+              >
               <span
                 *ngIf="!registerForm.valid && registerForm.touched"
                 class="help-block"
-                >enter valid data!</span
+                >fill all fields</span
               >
               <!-- closed -->
             </div>
@@ -387,3 +394,4 @@
     </div>
   </div>
 </div>
+<app-footer></app-footer>

@@ -90,7 +90,6 @@ export class TrainerProfileComponent implements OnInit {
         this.editProfileForm.controls.url.setValue(this.url);
         console.log(this.url);
         this.isNewImage = true;
-
         this.editProfileForm.controls.img.setValue(
           `${event.target.files[0].name}`
         );

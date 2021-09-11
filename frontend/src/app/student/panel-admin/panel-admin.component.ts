@@ -1,23 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { TrainerService } from 'src/app/trainer.service';
-import { TrainersSearchModel } from './trainerssearch.module';
+// import { TrainersSearchModel } from './trainerssearch.module';
 import { Router } from '@angular/router';
+import { AuthService } from '../../shared/auth.service';
+import { TrainerService } from '../../trainer.service';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css'],
+  selector: 'app-panel-admin',
+  templateUrl: './panel-admin.component.html',
+  styleUrls: ['./panel-admin.component.css'],
 })
-export class SearchComponent implements OnInit {
-  trainerslist: TrainersSearchModel[] = [];
+export class PanelAdminComponent implements OnInit {
+  // trainersList: TrainersSearchModel[] = [];
+  trainersList: any;
   constructor(
     private _trainerService: TrainerService,
-    private router: Router
+    private router: Router,
+    private _auth: AuthService
   ) {}
-
+  numbers = [];
   ngOnInit(): void {
+    // if (!this._auth.checkAdmin()) {
+    //   this.router.navigate(['/login']);
+    // }
     this._trainerService.getTrainers().subscribe((trainers) => {
-      this.trainerslist = JSON.parse(JSON.stringify(trainers));
+      this.trainersList = JSON.parse(JSON.stringify(trainers));
+      console.log(this.trainersList);
+    });
+
+    this._trainerService.getNumbers().subscribe((data) => {
+      this.numbers = JSON.parse(JSON.stringify(data));
     });
   }
   namesearch = '';
@@ -29,7 +40,7 @@ export class SearchComponent implements OnInit {
   }
   searchName() {
     this._trainerService.searchByName(this.namesearch).subscribe((trainers) => {
-      this.trainerslist = JSON.parse(JSON.stringify(trainers));
+      this.trainersList = JSON.parse(JSON.stringify(trainers));
     });
   }
   updateSkill(event: any) {
@@ -39,7 +50,7 @@ export class SearchComponent implements OnInit {
     this._trainerService
       .searchBySkill(this.skillsearch)
       .subscribe((trainers) => {
-        this.trainerslist = JSON.parse(JSON.stringify(trainers));
+        this.trainersList = JSON.parse(JSON.stringify(trainers));
       });
   }
   updateType(event: any) {
@@ -47,7 +58,7 @@ export class SearchComponent implements OnInit {
   }
   searchType() {
     this._trainerService.searchByType(this.typesearch).subscribe((trainers) => {
-      this.trainerslist = JSON.parse(JSON.stringify(trainers));
+      this.trainersList = JSON.parse(JSON.stringify(trainers));
     });
   }
   updateCourse(event: any) {
@@ -57,11 +68,12 @@ export class SearchComponent implements OnInit {
     this._trainerService
       .searchByCourse(this.coursesearch)
       .subscribe((trainers) => {
-        this.trainerslist = JSON.parse(JSON.stringify(trainers));
+        this.trainersList = JSON.parse(JSON.stringify(trainers));
       });
   }
   Allocate(trainer: any) {
-    localStorage.setItem('gettrainerId', trainer._id.toString());
+    localStorage.setItem('allocateId', trainer._id.toString());
+    localStorage.setItem('alloateEmail', trainer.email);
     this.router.navigate(['/admin/allocation']);
   }
 }

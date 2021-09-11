@@ -31,12 +31,10 @@ export class StudentRegisterComponent implements OnInit {
     DOB: ['', Validators.required],
     Course: ['', Validators.required],
     HighestQualification: ['', Validators.required],
-    SkillSet: ['', Validators.required],
     PassOfYear: [
       '',
       [Validators.required, Validators.min(2010), Validators.max(2022)],
     ],
-    EmploymentStatus: ['', Validators.required],
     State: ['', Validators.required],
     District: ['', [Validators.required, Validators.minLength(3)]],
     Post: ['', [Validators.required, Validators.minLength(3)]],
@@ -71,17 +69,13 @@ export class StudentRegisterComponent implements OnInit {
       'HighestQualification',
       this.registerForm.get('HighestQualification')!.value
     );
-    formData.append(
-      'EmploymentStatus',
-      this.registerForm.get('EmploymentStatus')!.value
-    );
+
     formData.append('PassOfYear', this.registerForm.get('PassOfYear')!.value);
     formData.append('DOB', this.registerForm.get('DOB')!.value);
     formData.append('State', this.registerForm.get('State')!.value);
     formData.append('District', this.registerForm.get('District')!.value);
     formData.append('Post', this.registerForm.get('Post')!.value);
     formData.append('PinCode', this.registerForm.get('PinCode')!.value);
-    formData.append('SkillSet', this.registerForm.get('SkillSet')!.value);
     formData.append('Course', this.registerForm.get('Course')!.value);
     formData.append('Status', this.registerForm.get('Status')!.value);
     formData.append(

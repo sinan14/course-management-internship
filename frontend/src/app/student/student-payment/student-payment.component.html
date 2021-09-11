@@ -1,3 +1,4 @@
+<app-header></app-header>
 
 <section id="section">
   <div></div>
@@ -178,35 +179,15 @@
               </div>
             </div>
           </div>
-
-          <button
-            *ngIf="
-              (Student.EmploymentStatus == 'Unemployed' &&
-                Student.Sex == 'Male') ||
-              Student.EmploymentStatus == 'Employed'
-            "
-            class="btn"
-          >
+          <button *ngIf="Student.Sex == 'Male'" class="btn">
             procced to pay {{ fee }}
           </button>
-
-          <button *ngIf="Student.EmploymentStatus == 'Student'" class="btn">
-            procced to pay {{ studentFee }}
-          </button>
-
-          <button
-            *ngIf="
-              Student.EmploymentStatus == 'Unemployed' &&
-              Student.Sex == 'Female'
-            "
-            class="btn"
-          >
+          <button *ngIf="Student.Sex == 'Female'" class="btn">
             procced to pay {{ womenFee }}
           </button>
         </form>
       </div>
     </div>
-
     <div class="col-25">
       <div class="container">
         <h4>
@@ -216,7 +197,6 @@
             <b></b>
           </span>
         </h4>
-
         <p>
           <a href="#">{{ Student.Course }} </a>
           <span class="price">{{ elevatedFee }}</span>
@@ -224,45 +204,8 @@
         <p>
           <a>After 10% off</a> <span class="price">{{ fee }}</span>
         </p>
-        <!-- student  -->
-        <p *ngIf="Student.EmploymentStatus == 'Student'">
-          <a>student Privilage</a> <span class="price">{{ studentFee }}</span>
-        </p>
-        <!-- women -->
-        <p
-          *ngIf="
-            Student.EmploymentStatus == 'Unemployed' && Student.Sex == 'Female'
-          "
-        >
-          <a>Women privilage</a> <span class="price">{{ womenFee }}</span>
-        </p>
-        <hr />
-        <!-- employed and unemployed male -->
-
-        <p
-          *ngIf="
-            Student.EmploymentStatus == 'Employed' ||
-            (Student.Sex == 'Male' && Student.EmploymentStatus == 'Unemployed')
-          "
-        >
-          Total
-          <span class="price" style="color: black"
-            ><b>{{ fee }}</b></span
-          >
-        </p>
-        <!-- students special -->
-        <p *ngIf="Student.EmploymentStatus == 'Student'">
-          Total
-          <span class="price" style="color: black"
-            ><b>{{ studentFee }}</b></span
-          >
-        </p>
         <!-- women special -->
-        <p
-          *ngIf="
-            Student.EmploymentStatus == 'Unemployed' && Student.Sex == 'Female'
-          "
-        >
+        <p *ngIf="Student.Sex == 'Female'">
           Total
           <span class="price" style="color: black"
             ><b>{{ womenFee }}</b></span
@@ -272,3 +215,4 @@
     </div>
   </div>
 </section>
+<app-footer></app-footer>

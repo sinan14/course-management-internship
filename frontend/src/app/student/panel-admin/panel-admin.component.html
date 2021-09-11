@@ -56,6 +56,7 @@
       </div>
     </div>
     <br />
+    <!-- this is search table -->
     <div class="table table-responsive">
       <table class="search-table">
         <thead class="thead-dark">
@@ -155,7 +156,7 @@
             </td>
           </tr>
           <tr
-            *ngFor="let trainer of trainerslist"
+            *ngFor="let trainer of trainersList"
             id="tablerow"
             (click)="Allocate(trainer)"
           >

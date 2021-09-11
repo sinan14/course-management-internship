@@ -1,114 +1,131 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link
+  href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+/>
 <section class="home-section">
-  
-<nav>
+  <nav>
     <div class="sidebar-button">
-    <i class="bi bi-layout-text-sidebar-reverse"></i>
-    <span class="dashboard">Trainer Requests</span>
-  </div>
+      <i class="bi bi-layout-text-sidebar-reverse"></i>
+      <span class="dashboard">Trainer Requests</span>
+    </div>
   </nav>
-  </section>
- 
+</section>
+
 <!-- <div  class="search-comp">
 <span class="search">Trainers List</span>
 </div> -->
 <div class="table">
-<table class="search-table ">
+  <table class="search-table">
     <thead class="thead-dark">
       <tr>
-        
         <th scope="col">Name</th>
         <th scope="col">Skill Set</th>
         <th scope="col">Type of Trainer</th>
-        <th scope="col" >ICTAK Course</th>
+        <th scope="col">ICTAK Course</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-       
         <td>
-            <!-- <div class="form">
-                <input type="search" id="form1" class="search" />
-                <button type="button" class="btn btn-primary">
-                    <span class="glyphicon glyphicon-search"></span>
-                  </button>
-              </div> -->
-              <div class="input-group">
-                <div class="form-outline">
-                  <input id="search-input" type="search" placeholder="Search by Name"   width="10px" (change)="updateName($event)" [(ngModel)]="namesearch" />
-                 
-                
-                <button id="button" (click)="searchName()" type="button" class="btn ">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-                </div>
-              </div>    
-            
-        </td>
-        <td>
-            <div class="input-group">
-                <div class="form-outline">
-                  <input id="search-input" type="search" placeholder="Search by Skill" (change)="updateSkill($event)"  width="10px"  />
-                 
-                
-                <button id="button" type="button" (click)="searchSkill()" class="btn ">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-                </div>
-              </div>    
-             
-        </td>
-        <td><div class="input-group">
+          <div class="input-group">
             <div class="form-outline">
-              <input id="search-input" type="search" placeholder="Search by Type of Trainer"   (change)="updateType($event)"  width="10px"  />
-             
-            
-            <button id="button" type="button" (click)="searchType()" class="btn ">
+              <input
+                id="search-input"
+                type="search"
+                placeholder="Search by Name"
+                width="10px"
+                (change)="updateName($event)"
+                [(ngModel)]="namesearch"
+              />
+
+              <button
+                id="button"
+                (click)="searchName()"
+                type="button"
+                class="btn"
+              >
                 <span class="glyphicon glyphicon-search"></span>
-            </button>
+              </button>
             </div>
-          </div>    
+          </div>
         </td>
         <td>
-            <div class="input-group">
-                <div class="form-outline">
-                  <input id="search-input" type="search" placeholder="Search by Course"  (change)="updateCourse($event)" width="10px"  />
-                 
-                
-                <button id="button" type="button" (click)="searchCourse()" class="btn ">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-                </div>
-              </div>    
-            
+          <div class="input-group">
+            <div class="form-outline">
+              <input
+                id="search-input"
+                type="search"
+                placeholder="Search by Skill"
+                (change)="updateSkill($event)"
+                width="10px"
+              />
+              <button
+                id="button"
+                type="button"
+                (click)="searchSkill()"
+                class="btn"
+              >
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="input-group">
+            <div class="form-outline">
+              <input
+                id="search-input"
+                type="search"
+                placeholder="Search by Type of Trainer"
+                (change)="updateType($event)"
+                width="10px"
+              />
+
+              <button
+                id="button"
+                type="button"
+                (click)="searchType()"
+                class="btn"
+              >
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="input-group">
+            <div class="form-outline">
+              <input
+                id="search-input"
+                type="search"
+                placeholder="Search by Course"
+                (change)="updateCourse($event)"
+                width="10px"
+              />
+
+              <button
+                id="button"
+                type="button"
+                (click)="searchCourse()"
+                class="btn"
+              >
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </div>
+          </div>
         </td>
       </tr>
       <tr *ngFor="let trainer of trainerslist" (click)="Allocate(trainer)">
-        
-        <td scope="row" >{{trainer.fname}} {{trainer.lname}}</td>
-        <td>{{trainer.skill}}</td>
-        <td>{{trainer.typeemp}}</td>
-        <td>{{trainer.course}}</td>
-        
+        <td scope="row">{{ trainer.fname }} {{ trainer.lname }}</td>
+        <td>{{ trainer.skill }}</td>
+        <td>{{ trainer.typeemp }}</td>
+        <td>{{ trainer.course }}</td>
       </tr>
-      <!-- <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-        <td></td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-        <td></td>
-      </tr> -->
     </tbody>
   </table>
-  </div>
-  
-
-  
+</div>

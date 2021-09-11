@@ -1,23 +1,18 @@
-<section id="section">
+<app-header></app-header>
 
-
-    <div class="card card0 border-0">
-      <div class="row d-flex">
-        <div class="col-lg-6">
-          <div class="card1 pb-5">
-            <div class="row">
-              <img
-                src="data:image/png;base64,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"
-                class="logo"
-              />
-            </div>
-            <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
-              <img src="https://i.imgur.com/uNGdWHi.png" class="image" />
-            </div>
+<body>
+  <main>
+    <div class="container">
+      <div class="sign-up">
+        <div class="top-box">
+          <div class="text">
+            <h1>Gradie</h1>
+            <h2>Beautiful gradients in seconds.</h2>
           </div>
+          <div class="mobile"></div>
         </div>
-        <div class="col-lg-6">
-          <div id="ul1">
+        <div class="bottom-box">
+          <div class="register" id="ul1">
             <ul
               style="width: 200px"
               class="nav nav-tabs nav-justified"
@@ -26,125 +21,83 @@
             >
               <li class="nav-item">
                 <a
-                  class="nav-link"
+                  class="nav-link active"
                   data-toggle="tab"
                   routerLink="/employeelogin"
                   role="tab"
                   aria-selected="true"
+                  >Employee</a
                 >
-                  Employee
-                </a>
               </li>
               <li class="nav-item">
                 <a
-                  class="nav-link active"
+                  class="nav-link"
                   data-toggle="tab"
                   routerLink="/login"
                   role="tab"
                   aria-selected="false"
-                  >student</a
                 >
+                  Student
+                </a>
               </li>
             </ul>
           </div>
-          <div id="heading">
-            <h3 class="login-heading"><strong>Sign In As Student</strong></h3>
-          </div>
-    
-          <div class="card2 card border-0 px-4 py-5">
-            <div class="row mb-4 px-3">
-              <h6 class="mb-0 mr-4 mt-2">Sign in with</h6>
-              <div class="facebook text-center mr-3">
-                <div class="fa fa-facebook"></div>
-              </div>
-              <div class="twitter text-center mr-3">
-                <div class="fa fa-twitter"></div>
-              </div>
-              <div class="linkedin text-center mr-3">
-                <div class="fa fa-linkedin"></div>
-              </div>
+          <form
+            action=""
+            class="login"
+            [formGroup]="loginForm"
+            (ngSubmit)="loginUser()"
+          >
+            <p>Email</p>
+            <input
+              type="email"
+              formControlName="Email"
+              placeholder="john@example.com"
+              class="email"
+            />
+            <span
+              *ngIf="
+                loginForm.get('Email').invalid && loginForm.get('Email').touched
+              "
+              class="help-block"
+              >Enter valid Email</span
+            >
+            <div *ngIf="isLoading" style="text-align: center">
+              <app-loading-spinner></app-loading-spinner>
             </div>
-            <div class="row px-3 mb-4">
-              <div class="line"></div>
-              <small class="or text-center">Or</small>
-              <div class="line"></div>
-            </div>
-            <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
-              <div class="row px-3">
-                <label class="mb-1">
-                  <h6 class="mb-0 text-sm">Email Address</h6>
-                </label>
-                <input
-                  class="mb-4"
-                  type="text"
-                  name="email"
-                  formControlName="Email"
-                  placeholder="Enter a valid email address"
-                />
+            <p>Password</p>
+            <input
+              type="password"
+              formControlName="Password"
+              placeholder="At least 8 characters"
+              class="password"
+            />
+            <span
+              *ngIf="
+                loginForm.get('Password').invalid &&
+                loginForm.get('Password').touched
+              "
+              class="help-block"
+              >Enter valid Password</span
+            >
+            <div class="checkbox">
+              <input type="checkbox" />
+              <p class="chk">
+                By creating an account, you<br />
+                agree to the
                 <span
-                  *ngIf="
-                    !loginForm.get('Email').valid && loginForm.get('Email').touched
-                  "
-                  class="help-block"
-                  >Please enter valid email!</span
+                  >Terms &<br />
+                  Conditions.</span
                 >
-              </div>
-              <div class="row px-3">
-                <label class="mb-1">
-                  <h6 class="mb-0 text-sm">Password</h6>
-                </label>
-                <input
-                  type="text"
-                  name="password"
-                  formControlName="Password"
-                  placeholder="Enter password"
-                />
-                <span
-                  *ngIf="
-                    !loginForm.get('Password').valid &&
-                    loginForm.get('Password').touched
-                  "
-                  class="help-block"
-                  >Please enter valid password!</span
-                >
-              </div>
-              <div class="row px-3 mb-4">
-                <div class="custom-control custom-checkbox custom-control-inline">
-                  <input
-                    id="chk1"
-                    type="checkbox"
-                    name="chk"
-                    class="custom-control-input"
-                  />
-                  <label for="chk1" class="custom-control-label text-sm ml-3"
-                    >Remember me</label
-                  >
-                </div>
-                <a [routerLink]="['/resetPassword']" class="ml-auto mb-0 text-sm"
-                  >Forgot Password?</a
-                >
-              </div>
-              <div class="row mb-3 px-3">
-                <button
-                  type="submit"
-                  class="btn btn-success float-right text-center"
-                  [disabled]="loginForm.invalid"
-                >
-                  Login
-                </button>
-              </div>
-            </form>
-            <div class="row mb-4 px-3">
-              <small class="font-weight-bold"
-                >Don't have an account?
-                <a [routerLink]="['/register']" class="text-danger"
-                  >Register</a
-                ></small
-              >
+              </p>
+              <br />
             </div>
-          </div>
+            <input type="submit" value="Create an Account" />
+          </form>
         </div>
       </div>
-    
     </div>
-    </section>
+  </main>
+</body>
+
+<app-footer></app-footer>

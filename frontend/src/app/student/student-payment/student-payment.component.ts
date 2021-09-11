@@ -35,7 +35,6 @@ export class StudentPaymentComponent implements OnInit {
   id: string;
   fee: number;
   elevatedFee: number;
-  studentFee: number;
   womenFee: number;
   studentId: string;
   courseFee = {
@@ -55,7 +54,7 @@ export class StudentPaymentComponent implements OnInit {
     PinCode: '',
     District: '',
     Sex: '',
-    EmploymentStatus: '',
+
     Status: 'Active',
     PaymentDate: new Date(),
   };
@@ -133,7 +132,7 @@ export class StudentPaymentComponent implements OnInit {
         this.Student = JSON.parse(JSON.stringify(studentData));
         this.fee = this.courseFee[this.Student.Course];
         this.elevatedFee = this.fee * (10 / 100) + this.fee;
-        this.studentFee = this.fee / 2;
+
         this.womenFee = this.fee / 2;
         //
         this.paymentForm = new FormGroup({

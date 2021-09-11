@@ -11,7 +11,7 @@
     #4ca2cd,
     #67b26f
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  margin-top: 4%;
+  /* margin-top: 4%; */
   padding: 3%;
 }
 
@@ -67,7 +67,7 @@
     margin-bottom: 0px;
     color: red;
   }
-  #myTab{
+  #myTab {
     margin: 10px 66px 10px 66px;
   }
   .register-left button {
@@ -80,7 +80,6 @@
   border-top-left-radius: 10% 50%;
   border-bottom-left-radius: 10% 50%;
 }
-
 
 .register .nav-tabs {
   margin-top: 3%;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CanActivate, Router } from '@angular/router';
-import { AuthService } from './shared/auth.service';
+import { AuthService } from './auth.service';
 import Swal from 'sweetalert2';
 
 @Injectable({

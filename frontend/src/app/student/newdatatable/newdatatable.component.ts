@@ -28,7 +28,6 @@ export class NewdatatableComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.isLoading = true;
-
     this.studentService.fetchStudents().subscribe((data: any) => {
       this.isLoading = false;
       // console.log(data);
@@ -62,17 +61,43 @@ export class NewdatatableComponent implements AfterViewInit {
         data: this.dataSet,
         columns: [
           { title: 'Image' },
-          { title: 'Id' },
-          { title: 'Name' },
-          { title: 'Email' },
-          { title: 'Phone' },
-          { title: 'Gender' },
+          {
+            title: 'Id',
+          },
+          {
+            className: 'details-more',
+            title: 'Name',
+          },
+          {
+            title: 'Email',
+          },
+          {
+            title: 'Phone',
+          },
+          {
+            title: 'Gender',
+          },
           { title: 'DOB' },
-          { title: 'Course' },
-          { title: 'Highest Qualification' },
-          { title: 'Skill Set' },
-          { title: 'Pass Out Year' },
-          { title: 'Employment Status' },
+          {
+            className: 'details-more',
+            title: 'Course',
+          },
+          {
+            className: 'details-more',
+            title: 'Highest Qualification',
+          },
+          {
+            className: 'details-more',
+            title: 'Skill Set',
+          },
+          {
+            className: 'details-more',
+            title: 'Pass Out Year',
+          },
+          {
+            className: 'details-more',
+            title: 'Employment Status',
+          },
           { title: 'State' },
           { title: 'District' },
           { title: 'Post' },
@@ -81,7 +106,10 @@ export class NewdatatableComponent implements AfterViewInit {
           { title: 'Created Date' },
           { title: 'Payment Date' },
           { title: 'Approval Date' },
-          { title: 'Exit Exam Mark' },
+          {
+            title: 'Exit Exam Mark',
+            className: 'details-more',
+          },
           {
             title: ' ',
             className: 'details',
@@ -125,6 +153,16 @@ export class NewdatatableComponent implements AfterViewInit {
         router.navigate(['/students', id[1]]);
       });
     });
+
+    // $('#display tbody').click(function () {
+    $('#display tbody').on('click', '.details-more', function () {
+      var stId = that.table1.row(this).data();
+      console.log(stId[1]);
+      const router = that.injector.get(Router);
+      router.navigate(['/students', stId[1]]);
+    });
+    // });
+
     $('#display thead tr:eq(1) th').each(function () {
       var title = $(this).text();
       if (title != '')

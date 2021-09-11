@@ -52,8 +52,7 @@ export class StudentProfileComponent implements OnInit {
     PinCode: null,
     HighestQualification: '',
     PassOfYear: '',
-    SkillSet: '',
-    EmploymentStatus: '',
+
     Course: '',
     DOB: '',
     Password: '',
@@ -65,7 +64,6 @@ export class StudentProfileComponent implements OnInit {
     imageUrl: '',
     ApprovalDate: '',
     PaymentDate: '',
-    ExitExamMark: '',
   };
 
   constructor(
@@ -135,15 +133,9 @@ export class StudentProfileComponent implements OnInit {
             Validators.min(2010),
             Validators.max(2023),
           ]),
-          SkillSet: new FormControl(this.Student.SkillSet, [
-            Validators.required,
-          ]),
-          EmploymentStatus: new FormControl(this.Student.EmploymentStatus, [
-            Validators.required,
-          ]),
+
           Course: new FormControl(this.Student.Course, [Validators.required]),
           DOB: new FormControl(this.Student.DOB, [Validators.required]),
-          ExitExamMark: new FormControl(this.Student.ExitExamMark),
 
           Password: new FormControl(this.Student.Password, [
             Validators.required,

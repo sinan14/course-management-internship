@@ -1,3 +1,4 @@
+<app-header></app-header>
 <section id="section">
   <!-- Student Profile -->
   <div class="student-profile py-4 mt-10">
@@ -341,86 +342,6 @@
                       />
                     </td>
                   </tr>
-                  <!-- SkillSet -->
-                  <tr>
-                    <th width="30%">Skill Set</th>
-                    <td width="2%">:</td>
-                    <td [class.editModeOn]="readonly == false">
-                      <input
-                        *ngIf="readonly"
-                        type="text"
-                        [value]="Student.SkillSet"
-                        [ngClass]="{
-                          Border: !readonly,
-                          noBorder: readonly
-                        }"
-                        readonly
-                      />
-                      <input
-                        *ngIf="!readonly"
-                        formControlName="SkillSet"
-                        type="text"
-                        class="form-control noBorder"
-                        [value]="Student.SkillSet"
-                        [ngClass]="{
-                          Border: !readonly,
-                          noBorder: readonly
-                        }"
-                      />
-                    </td>
-                  </tr>
-                  <!-- EmploymentStatus -->
-                  <tr>
-                    <th width="30%">Employment Status</th>
-                    <td width="2%">:</td>
-                    <td *ngIf="readonly">
-                      <input
-                        type="text"
-                        [value]="Student.EmploymentStatus"
-                        [ngClass]="{
-                          Border: !readonly,
-                          noBorder: readonly
-                        }"
-                        [readonly]="readonly"
-                      />
-                    </td>
-                    <td *ngIf="!readonly">
-                      <select
-                        class="form-control Border"
-                        formControlName="EmploymentStatus"
-                      >
-                        <option class="hidden" value="" disabled selected>
-                          Employment Status
-                        </option>
-                        <option value="Student">Student</option>
-                        <option value="Unemployed">Unemployed</option>
-                        <option value="Employed">Employed</option>
-                      </select>
-                    </td>
-                  </tr>
-                  <!-- exitExamMark -->
-                  <tr *ngIf="_auth.getUser() == 'admin'">
-                    <th width="30%">Exit Exam Mark</th>
-                    <td width="2%">:</td>
-                    <td *ngIf="readonly">
-                      <input
-                        type="text"
-                        [value]="Student.ExitExamMark"
-                        class="noBorder"
-                        readonly
-                      />
-                    </td>
-                    <td *ngIf="!readonly">
-                      <input
-                        formControlName="ExitExamMark"
-                        type="number"
-                        min="0"
-                        max="100"
-                        [value]="Student.ExitExamMark"
-                        class="Border form-control"
-                      />
-                    </td>
-                  </tr>
 
                   <!-- Password -->
                   <tr>
@@ -507,3 +428,4 @@
   </div>
   <!-- partial -->
 </section>
+<app-footer></app-footer>
