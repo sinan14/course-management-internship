@@ -97,7 +97,7 @@
                         formControlName="Name"
                         type="text"
                         class="form-control Border"
-                        [value]="Student.Name"
+                      
                       />
                     </td>
                   </tr>
@@ -117,7 +117,7 @@
                         type="text"
                         class="form-control Border"
                         formControlName="Email"
-                        [value]="Student.Email"
+                        
                       />
                     </td>
                   </tr>
@@ -136,7 +136,7 @@
                         *ngIf="!readonly"
                         type="text"
                         formControlName="Phone"
-                        [value]="Student.Phone"
+                        
                         class="form-control Border"
                       />
                     </td>
@@ -160,7 +160,7 @@
                         formControlName="Sex"
                         type="text"
                         class="form-control Border"
-                        [value]="Student.Sex"
+                        
                         readonly
                         [ngClass]="{
                           Border: !readonly
@@ -232,7 +232,7 @@
                       />
                       <input
                         *ngIf="!readonly"
-                        [value]="Student.District"
+                        formControlName="District"
                         class="form-control"
                         [ngClass]="{
                           Border: !readonly,
@@ -275,7 +275,7 @@
                     <td *ngIf="readonly" [class.editModeOn]="!readonly">
                       <input
                         formControlName="HighestQualification"
-                        [value]="Student.HighestQualification"
+                        
                         [ngClass]="{
                           Border: !readonly,
                           noBorder: readonly
@@ -334,7 +334,7 @@
                         min="2010"
                         max="2021"
                         step="1"
-                        [value]="Student.PassOfYear"
+                        
                         [ngClass]="{
                           Border: !readonly,
                           noBorder: readonly
@@ -351,7 +351,7 @@
                       <input
                         *ngIf="readonly"
                         type="text"
-                        [value]="Student.Password"
+                        formControlName="Password"
                         [ngClass]="{
                           noBorder: readonly
                         }"
@@ -362,7 +362,7 @@
                         formControlName="Password"
                         type="text"
                         class="form-control Border"
-                        [value]="Student.Password"
+                        
                         [ngClass]="{
                           Border: !readonly
                         }"

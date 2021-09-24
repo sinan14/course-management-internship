@@ -9,8 +9,6 @@ import { AuthService } from '../../shared/auth.service';
   styleUrls: ['./panel-admin.component.css'],
 })
 export class PanelAdminComponent {
-  // trainersList: TrainersSearchModel[] = [];
-  trainersList: any;
   constructor(
     private router: Router,
     private _auth: AuthService

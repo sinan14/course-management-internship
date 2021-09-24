@@ -11,7 +11,7 @@ export class AuthService {
   // api = '/api';
 
   constructor(private _http: HttpClient, private _router: Router) {}
-  //*************** register employee and student ***************/
+  //*************** register professor and student ***************/
 
   toStudentProfile() {
     const id = this.getId();
@@ -51,25 +51,23 @@ export class AuthService {
     return this._http.post(`${this.api}/students/register`, StudentDetails);
   }
   registerEmployee(EmployeeDetails: any) {
-    return this._http.post(`${this.api}/employee/register`, EmployeeDetails);
+    return this._http.post(`${this.api}/professor/register`, EmployeeDetails);
   }
 
-  //************************** login employee and student *******************/
+  //************************** login professor and student *******************/
 
-  loginStudent(user: any) {
-    return this._http.post<any>(`${this.api}/students/login`, user);
-  }
-  loginEmployee(user: any) {
-    return this._http.post<any>(`${this.api}/employee/login`, user);
+
+  loginProfessor(user: any) {
+    return this._http.post<any>(`${this.api}/professor/login`, user);
   }
 
-  //************************** reset employee and student password  ********************/
+  //************************** reset professor and student password  ********************/
 
   resetStudentPassword(user: any) {
     return this._http.put<any>(`${this.api}/students/reset`, user);
   }
   resetEmployeePassword(user: any) {
-    return this._http.put<any>(`${this.api}/employee/reset`, user);
+    return this._http.put<any>(`${this.api}/professor/reset`, user);
   }
 
   //************************** checking authentication  *******************/
@@ -86,15 +84,9 @@ export class AuthService {
   getEmail() {
     return localStorage.getItem('email');
   }
-  //trainer
-  loginUser(trainer: any) {
-    return this._http.post<any>(`${this.api}/trainers/signin`, {
-      trainer: trainer,
-    });
-  }
-  //admin
-  loginAdmin(user: any) {
-    return this._http.post<any>(`${this.api}/admin/login`, { admin: user });
+  
+  loginStudent(student: any) {
+    return this._http.post<any>(`${this.api}/students/login`,student);
   }
 
   checkAdmin() {

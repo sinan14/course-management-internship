@@ -14,7 +14,7 @@ const generator = require("generate-password");
 //************************************************ */
 
 router.post("/register", upload.single("img"), (req, res) => {
-  // console.log(req.body);
+  console.log(req.body);
   var Student = {
     Name: req.body.Name,
     Email: req.body.Email,
@@ -23,33 +23,34 @@ router.post("/register", upload.single("img"), (req, res) => {
     DOB: req.body.DOB,
     Course: req.body.Course,
     HighestQualification: req.body.HighestQualification,
-
     PassOfYear: req.body.PassOfYear,
-
     State: req.body.State,
     District: req.body.District,
     Post: req.body.Post,
     PinCode: req.body.PinCode,
     Status: req.body.Status,
-
     CreationDate: req.body.CreationDate,
     PaymentDate: req.body.PaymentDate,
     ApprovalDate: req.body.ApprovalDate,
-    Password: "NewRegister@ict",
+    Password: "NewRegister@ict1",
     Suid: "New Register",
-
     image: {
       data: fs.readFileSync(req.file.path),
       contentType: "image",
     },
   };
   var student = StudentData(Student);
-  student.save((err, result) => {
-    if (err) {
-      res.send({ status: false });
-    }
-    res.send({ status: true });
-  });
+  console.log(student);
+  student
+      .save()
+      .then(function (data) {
+        res.send({status:true});
+      })
+      .catch(function (error) {
+        console.log(error);
+        res.send({status:false});
+      });
+  
 });
 
 //************************      checks login            ************************ */

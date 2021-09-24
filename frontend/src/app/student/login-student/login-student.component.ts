@@ -27,7 +27,8 @@ export class LoginStudentComponent {
 
   loginUser() {
     this.isLoading = true;
-    this._auth.loginUser(this.loginForm.value).subscribe(
+    console.log(this.loginForm.value)
+    this._auth.loginStudent(this.loginForm.value).subscribe(
       (response) => {
         this.isLoading = false;
         if (response.status) {

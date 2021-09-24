@@ -1,0 +1,72 @@
+
+#btn1{
+  background-color: teal;
+  color: white;
+}
+#btn1:hover{
+  background-color: rgb(88, 88, 88);
+  
+}
+.header-btn{
+    width: 161%;
+    border: none;
+    border-radius: 1rem;
+    padding: 8%;
+    background: linear-gradient(#008B8B,#808080);
+    /* background-color: rgb(23, 94, 94); */
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+
+  /* Courses Section
+  --------------------------------*/
+  #courses {
+    padding: 60px 0 60px 0;
+    overflow: hidden;
+  }
+  
+  #courses .card {
+    padding: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 30px rgba(73, 78, 92, 0.15);
+    background: #fff;
+    transition: 0.4s;
+    height: 100%;
+    width: 30cm;
+  }
+  
+ 
+  
+  #courses h4 {
+    margin-left: 100px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+  
+  #courses h4 a {
+    color: #111;
+  }
+  
+  #courses p {
+    font-size: 14px;
+    margin-bottom: 0;
+    line-height: 24px;
+  }
+  
+  @media (max-width: 767px) {
+    #more-features .card {
+      margin-bottom: 20px;
+    }
+
+    #courses h4, #courses p {
+      margin-left: 0;
+      text-align: center;
+    }
+  }
+  
+
+  

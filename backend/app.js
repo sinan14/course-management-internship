@@ -52,9 +52,9 @@ app.use(session(sessionConfig));
 // });
 
 const studentRoutes = require("./routes/studentRoutes");
-const employeeRoutes = require("./routes/employeeRoutes");
+const professorRoutes = require("./routes/professorRoutes");
 app.use("/students", studentRoutes);
-app.use("/employee", employeeRoutes);
+app.use("/professor", professorRoutes);
 //
 const trainerRoutes = require("./routes/trainerRoutes");
 const adminRoutes = require("./routes/adminRoutes");

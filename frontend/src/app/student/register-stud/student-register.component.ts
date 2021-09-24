@@ -1,5 +1,5 @@
 import { AuthService } from '../../shared/auth.service';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -127,6 +127,7 @@ export class StudentRegisterComponent implements OnInit {
     );
   }
 
+
   selectImage(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -172,5 +173,5 @@ export class StudentRegisterComponent implements OnInit {
   ];
 
   //***********************************jquery **********************************/
-  ngOnInit() {}
+  ngOnInit(){}
 }

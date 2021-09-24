@@ -33,7 +33,7 @@ export class LoginEmployeeComponent implements OnInit {
       return;
     }
     this.isLoading = true;
-    this._auth.loginEmployee(this.empLoginForm.value).subscribe(
+    this._auth.loginProfessor(this.empLoginForm.value).subscribe(
       (response) => {
         this.isLoading = false;
         if (response.status) {

@@ -3,13 +3,14 @@ import { Component, AfterViewInit, ViewChild } from "@angular/core";
 import { StudentServiceService } from "../../st-service/student.service";
 import { Router } from "@angular/router";
 import { Injector } from "@angular/core";
-
 @Component({
-  selector: "app-admin-data-table",
-  templateUrl: "./admin-data-table.component.html",
-  styleUrls: ["./admin-data-table.component.css"],
+  selector: "app-newdatatable",
+  templateUrl: "./newdatatable.component.html",
+  styleUrls: ["./newdatatable.component.css"],
 })
-export class AdminDataTableComponent implements AfterViewInit {
+export class NewdatatableComponent implements AfterViewInit {
+  isLoading: boolean = false;
+
   constructor(
     private studentService: StudentServiceService,
     private router: Router,
@@ -26,10 +27,15 @@ export class AdminDataTableComponent implements AfterViewInit {
   dataSet: string[][] = [];
 
   ngAfterViewInit(): void {
+    this.isLoading = true;
     this.studentService.fetchStudents().subscribe((data: any) => {
-      console.log(data);
+      this.isLoading = false;
+      // console.log(data);
       data.forEach((value: any) => {
-        if (value["Status"] == "inactive") {
+        delete value["Password"];
+        delete value["Suid"];
+        delete value["__v"];
+        if (value["Status"] == "Active") {
           var propValue: string[] = Object.values(value);
           this.dataSet.push(propValue);
         }
@@ -45,7 +51,7 @@ export class AdminDataTableComponent implements AfterViewInit {
         columnDefs: [
           { orderable: false, targets: 0 },
           {
-            targets: [0, 1, 3, 4, 5, 6, 12, 14, 15,  ],
+            targets: [0, 1, 3, 4, 5, 6,],
             visible: false,
           },
         ],
@@ -55,28 +61,37 @@ export class AdminDataTableComponent implements AfterViewInit {
         data: this.dataSet,
         columns: [
           { title: "Image" },
-          { title: "Id" },
-          { title: "Name" },
-          { title: "Email" },
-          { title: "Phone" },
-          { title: "Gender" },
+          {title: "Id",},
+          {
+            className: "details-more",
+            title: "Name",
+          },
+          {
+            title: "Email",
+          },
+          {
+            title: "Phone",
+          },
+          {title: "Gender",},
           { title: "DOB" },
-          { title: "Course" },
-          { title: "Highest Qualification" },
-          { title: "Pass Out Year" },
+          {
+            className: "details-more",
+            title: "Course",
+          },
+          {
+            className: "details-more",
+            title: "Highest Qualification",
+          },
+
+          {
+            className: "details-more",
+            title: "Pass Out Year",
+          },
           { title: "State" },
           { title: "District" },
-          { title: "Post" },
-          { title: "PinCode" },
-          { title: "Status" },
-          { title: "Created Date" },
-          {
-            title: " ",
-            className: "details-more",
-            orderable: false,
-            data: null,
-            defaultContent: "<button class='btn btn-primary'>More></button>",
-          },
+          // { title: "Created Date" },
+          // { title: "Payment Date" },
+          // { title: "Approval Date" },
         ],
 
         lengthChange: false,
@@ -105,6 +120,16 @@ export class AdminDataTableComponent implements AfterViewInit {
         router.navigate(["/students", id[1]]);
       });
     });
+
+    // $('#display tbody').click(function () {
+    $("#display tbody").on("click", ".details-more", function () {
+      var stId = that.table1.row(this).data();
+      console.log(stId[1]);
+      const router = that.injector.get(Router);
+      router.navigate(["/students", stId[1]]);
+    });
+    // });
+
     $("#display thead tr:eq(1) th").each(function () {
       var title = $(this).text();
       if (title != "")
@@ -136,7 +161,6 @@ export class AdminDataTableComponent implements AfterViewInit {
     useTextFile: false,
     useBom: true,
     useKeysAsHeaders: false,
-
     headers: [
       "Name",
       "Email",
@@ -148,8 +172,6 @@ export class AdminDataTableComponent implements AfterViewInit {
       "PassOut Year",
       "State",
       "District",
-      "Post",
-      "PinCode",
     ],
   };
 
@@ -190,6 +212,7 @@ export class AdminDataTableComponent implements AfterViewInit {
         delete value["16"];
         delete value["17"];
         delete value["18"];
+        delete value["19"];
         console.log("Data in index: " + index + " is: " + value);
       });
       this.csvExporter.generateCsv(this.filteredRows);
@@ -201,6 +224,7 @@ export class AdminDataTableComponent implements AfterViewInit {
         delete value["16"];
         delete value["17"];
         delete value["18"];
+        delete value["19"];
         console.log("Data in index: " + index + " is: " + value);
       });
       this.csvExporter.generateCsv(data);
