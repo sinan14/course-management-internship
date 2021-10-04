@@ -1,6 +1,6 @@
 <app-header></app-header>
 <section id="section">
-  <!-- employee Profile -->
+  <!-- professor Profile -->
   <div class="student-profile py-4">
     <div class="container">
       <div class="row">
@@ -14,11 +14,11 @@
                 alt="student dp"
               />
 
-              <h3>{{ employee.Name }}</h3>
+              <h3>{{ professor.fname }} {{professor.lname}}</h3>
             </div>
             <div class="card-body">
               <p class="mb-0">
-                <strong class="pr-1">employee ID:</strong>321000001
+                <strong class="pr-1">professor ID:</strong>321000001
               </p>
               <p class="mb-0"><strong class="pr-1">Specialised:</strong>PHP</p>
               <p class="mb-0">
@@ -32,7 +32,7 @@
           <div class="card shadow-sm">
             <div class="card-header bg-transparent border-0">
               <h3 class="mb-0">
-                <i class="fa fa-address-card mr-1"></i>General Information
+                <i class="bi bi-person-lines-fill"></i>General information
               </h3>
             </div>
             <!-- loading-spinner -->
@@ -40,26 +40,46 @@
               <app-loading-spinner></app-loading-spinner>
             </div>
             <!-- <form (ngSubmit)="updateProfile()"> -->
-            <form [formGroup]="employeeUpdateForm" (ngSubmit)="updateProfile()">
+            <form [formGroup]="UpdateForm" (ngSubmit)="updateProfile()">
               <div class="card-body pt-0">
                 <table class="table table-responsive">
                   <tr>
-                    <th width="30%">employee Name</th>
+                    <th width="30%">first Name</th>
                     <td width="2%">:</td>
                     <td [class.editModeOn]="!readonly">
                       <input
                         *ngIf="readonly"
                         type="text"
-                        [value]="employee.Name"
+                        [value]="professor.fname"
                         class="noBorder"
                         readonly
                       />
                       <input
                         *ngIf="!readonly"
-                        formControlName="Name"
+                        formControlName="fname"
                         type="text"
                         class="form-control Border"
-                        [value]="employee.Name"
+                        [value]="professor.fname"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th width="30%">last name</th>
+                    <td width="2%">:</td>
+                    <td [class.editModeOn]="!readonly">
+                      <input
+                        *ngIf="readonly"
+                        type="text"
+                        [value]="professor.lname"
+                        class="noBorder"
+                        readonly
+                      />
+                      <input
+                        *ngIf="!readonly"
+                        formControlName="fname"
+                        type="text"
+                        class="form-control Border"
+                        [value]="professor.lname"
                       />
                     </td>
                   </tr>
@@ -70,7 +90,7 @@
                       <input
                         *ngIf="readonly"
                         type="text"
-                        [value]="employee.Email"
+                        [value]="professor.email"
                         class="noBorder"
                         readonly
                       />
@@ -78,8 +98,7 @@
                         *ngIf="!readonly"
                         type="text"
                         class="form-control Border"
-                        formControlName="Email"
-                        [value]="employee.Email"
+                        formControlName="email"
                       />
                     </td>
                   </tr>
@@ -90,15 +109,14 @@
                       <input
                         *ngIf="readonly"
                         type="text"
-                        [value]="employee.Phone"
+                        [value]="professor.phno"
                         class="noBorder"
                         readonly
                       />
                       <input
                         *ngIf="!readonly"
                         type="text"
-                        formControlName="Phone"
-                        [value]="employee.Phone"
+                        formControlName="professor.phno"
                         class="form-control Border"
                       />
                     </td>
@@ -109,24 +127,13 @@
                     <td width="2%">:</td>
                     <td [class.editModeOn]="!readonly">
                       <input
-                        *ngIf="readonly"
+                        readonly
                         type="text"
-                        [value]="employee.Gender"
+                        [value]="professor.Gender"
                         [ngClass]="{
                           noBorder: readonly
                         }"
                         readonly
-                      />
-                      <input
-                        *ngIf="!readonly"
-                        formControlName="Gender"
-                        type="text"
-                        class="form-control Border"
-                        [value]="employee.Gender"
-                        readonly
-                        [ngClass]="{
-                          Border: !readonly
-                        }"
                       />
                     </td>
                   </tr>
@@ -136,17 +143,10 @@
                     <td width="2%">:</td>
                     <td [class.editModeOn]="readonly == false">
                       <input
-                        *ngIf="readonly"
-                        [value]="employee.DOB | date"
+                        readonly
+                        [value]="professor.DOB | date"
                         type="text"
                         class="noBorder"
-                        readonly
-                      />
-                      <input
-                        *ngIf="!readonly"
-                        [value]="employee.DOB | date"
-                        type="text"
-                        class="Border form-control"
                         readonly
                       />
                     </td>
@@ -158,18 +158,8 @@
                     <td width="2%">:</td>
                     <td [class.editModeOn]="readonly == false">
                       <input
-                        *ngIf="readonly"
-                        [value]="employee.State"
-                        [ngClass]="{
-                          Border: !readonly,
-                          noBorder: readonly
-                        }"
                         readonly
-                      />
-                      <input
-                        *ngIf="!readonly"
-                        [value]="employee.State"
-                        class="form-control"
+                        [value]="professor.State"
                         [ngClass]="{
                           Border: !readonly,
                           noBorder: readonly
@@ -185,7 +175,7 @@
                     <td [class.editModeOn]="readonly == false">
                       <input
                         *ngIf="readonly"
-                        [value]="employee.District"
+                        [value]="professor.District"
                         [ngClass]="{
                           Border: !readonly,
                           noBorder: readonly
@@ -194,7 +184,7 @@
                       />
                       <input
                         *ngIf="!readonly"
-                        [value]="employee.District"
+                        [value]="professor.District"
                         class="form-control"
                         [ngClass]="{
                           Border: !readonly,
@@ -211,7 +201,7 @@
                     <td width="2%">:</td>
                     <td *ngIf="readonly" [class.editModeOn]="!readonly">
                       <input
-                        [value]="employee.HighestQualification"
+                        [value]="professor.qual"
                         [ngClass]="{
                           Border: !readonly,
                           noBorder: readonly
@@ -222,7 +212,7 @@
                     <td *ngIf="!readonly">
                       <select
                         class="form-control Border"
-                        formControlName="HighestQualification"
+                        formControlName="qual"
                       >
                         <option class="hidden" value="" disabled selected>
                           Highest Qualification *
@@ -242,38 +232,7 @@
                       </select>
                     </td>
                   </tr>
-                  <!-- PassOfYear -->
-                  <tr>
-                    <th width="30%">Pass Out Year</th>
-                    <td width="2%">:</td>
-                    <td [class.editModeOn]="readonly == false">
-                      <input
-                        *ngIf="readonly"
-                        class="noBorder"
-                        type="number"
-                        [value]="employee.PassOfYear"
-                        [ngClass]="{
-                          Border: !readonly,
-                          noBorder: readonly
-                        }"
-                        readonly
-                      />
-                      <input
-                        *ngIf="!readonly"
-                        class="form-control Border"
-                        formControlName="PassOfYear"
-                        type="number"
-                        min="2000"
-                        max="2021"
-                        step="1"
-                        [value]="employee.PassOfYear"
-                        [ngClass]="{
-                          Border: !readonly,
-                          noBorder: readonly
-                        }"
-                      />
-                    </td>
-                  </tr>
+                  
                   <!-- SkillSet -->
                   <tr>
                     <th width="30%">Skill Set</th>
@@ -282,7 +241,7 @@
                       <input
                         *ngIf="readonly"
                         type="text"
-                        [value]="employee.SkillSet"
+                        [value]="professor.skill"
                         [ngClass]="{
                           Border: !readonly,
                           noBorder: readonly
@@ -291,10 +250,10 @@
                       />
                       <input
                         *ngIf="!readonly"
-                        formControlName="SkillSet"
+                        formControlName="skill"
                         type="text"
                         class="form-control noBorder"
-                        [value]="employee.SkillSet"
+                        [value]="professor.SkillSet"
                         [ngClass]="{
                           Border: !readonly,
                           noBorder: readonly
@@ -304,31 +263,7 @@
                   </tr>
 
                   <!-- Password -->
-                  <tr>
-                    <th width="30%">Password</th>
-                    <td width="2%">:</td>
-                    <td [class.editModeOn]="!readonly">
-                      <input
-                        *ngIf="readonly"
-                        type="text"
-                        [value]="employee.Password"
-                        [ngClass]="{
-                          noBorder: readonly
-                        }"
-                        readonly
-                      />
-                      <input
-                        *ngIf="!readonly"
-                        formControlName="Password"
-                        type="text"
-                        class="form-control Border"
-                        [value]="employee.Password"
-                        [ngClass]="{
-                          Border: !readonly
-                        }"
-                      />
-                    </td>
-                  </tr>
+           
                 </table>
                 <div *ngIf="readonly">
                   <button

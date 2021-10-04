@@ -1,0 +1,30 @@
+<h1>All Courses</h1>
+<div>
+  <a routerLink="new">Add course</a>
+</div>
+<div *ngFor="let course of courses">
+  <div class="card" mb-3>
+    <div class="row">
+      <div class="col-md-4">
+        <!-- <img class="img-fluid" alt=""  /> -->
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h3 class="card-title">{{ course.title }}</h3>
+          <p class="card-text">{{ course.description }}</p>
+          <p class="card-text">
+            <small class="text-muted">{{ course.duration }} months</small>
+          </p>
+          <a
+            class="btn btn-warning"
+            [routerLink]="[course._id, 'edit']"
+            >Edit {{ course.title }}</a
+          >
+          <a class="btn btn-danger" (click)="deleteCourse(course._id)"
+            >Delete {{ course.title }}</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

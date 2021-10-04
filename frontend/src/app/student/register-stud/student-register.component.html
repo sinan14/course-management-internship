@@ -5,7 +5,7 @@
       <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
       <h3>Welcome</h3>
       <p>You are just one step away from walking with us!</p>
-      <button type="submit"><a routerLink="/login">login</a></button>
+      <button type="submit"><a routerLink="/student/login">login</a></button>
     </div>
     <div class="col-xs-12 col-sm-10 col-md-9 register-right">
       <ul
@@ -284,54 +284,8 @@
                     >image cannot be empty!</span
                   >
                 </div>
-                <!-- skillset
+
                 <div class="form-group">
-                  <input
-                    type="text"
-                    formControlName="SkillSet"
-                    class="form-control"
-                    placeholder="skillSets, you can include soft skills too"
-                  />
-                  <span
-                    *ngIf="
-                      !registerForm.get('SkillSet').valid &&
-                      registerForm.get('SkillSet').touched
-                    "
-                    class="help-block"
-                    >skills cannot be empty</span
-                  >
-                </div> -->
-                <!-- Employment status -->
-                <!--
-                <div class="form-group">
-                  <select
-                    class="form-control"
-                    formControlName="EmploymentStatus"
-                  >
-                    <option class="hidden" value="" disabled selected>
-                      Employment Status
-                    </option>
-                    <option value="Student">Student</option>
-                    <option value="Unemployed">Unemployed</option>
-                    <option value="Employed">Employed</option>
-                  </select>
-                  <span
-                    *ngIf="
-                      !registerForm.get('EmploymentStatus').valid &&
-                      registerForm.get('EmploymentStatus').touched
-                    "
-                    class="help-block"
-                    >status cannot be empty!</span
-                  >
-                </div> 
-              -->
-                <!-- District -->
-                <div class="form-group">
-                  <!-- <select
-                    formControlName="District"
-                    class="form-control"
-                    id="secondlist"
-                  ></select> -->
                   <input
                     class="form-control"
                     type="text"

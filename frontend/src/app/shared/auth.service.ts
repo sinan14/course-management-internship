@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  api: string = 'http://localhost:3000';
-  // api = '/api';
+public _API=environment.apiUrl;
 
   constructor(private _http: HttpClient, private _router: Router) {}
   //*************** register professor and student ***************/
@@ -48,26 +48,25 @@ export class AuthService {
   //*********************************        register ********************************/
 
   registerUser(StudentDetails: any) {
-    return this._http.post(`${this.api}/students/register`, StudentDetails);
+    return this._http.post(`${this._API}/students/register`, StudentDetails);
   }
-  registerEmployee(EmployeeDetails: any) {
-    return this._http.post(`${this.api}/professor/register`, EmployeeDetails);
-  }
+
 
   //************************** login professor and student *******************/
 
 
   loginProfessor(user: any) {
-    return this._http.post<any>(`${this.api}/professor/login`, user);
+    console.log(user)
+    return this._http.post<any>(`${this._API}/professors/login`, user);
   }
 
   //************************** reset professor and student password  ********************/
 
   resetStudentPassword(user: any) {
-    return this._http.put<any>(`${this.api}/students/reset`, user);
+    return this._http.put<any>(`${this._API}/students/reset`, user);
   }
   resetEmployeePassword(user: any) {
-    return this._http.put<any>(`${this.api}/professor/reset`, user);
+    return this._http.put<any>(`${this._API}/professors/reset`, user);
   }
 
   //************************** checking authentication  *******************/
@@ -86,7 +85,7 @@ export class AuthService {
   }
   
   loginStudent(student: any) {
-    return this._http.post<any>(`${this.api}/students/login`,student);
+    return this._http.post<any>(`${this._API}/students/login`,student);
   }
 
   checkAdmin() {

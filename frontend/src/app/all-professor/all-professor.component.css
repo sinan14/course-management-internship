@@ -5,8 +5,6 @@
     height: 100%;
     width: 100%;
     margin-bottom: 0;
-}
-#section {
   
     background: #67b26f; /* fallback for old browsers */
     background: -webkit-linear-gradient(
@@ -20,39 +18,12 @@
       #67b26f
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     padding: 0;
-    
+  
     font-family: "Lato", sans-serif;
     color: #000;
   }
-.help-block {
-    color:red
-}
-
-.forgot {
-    background-color: #fff;
-    padding: 12px;
-    border: 1px solid #dfdfdf
-}
-
-.padding-bottom-3x {
-    padding-bottom: 72px !important
-}
-
-.card-footer {
-    background-color: #fff
-}
-
-.btn {
-    font-size: 13px
-}
-/* input.ng-invalid.ng-touched {
-    border: 2px solid red;
-  } */
-
-.form-control:focus {
-    color: #495057;
-    background-color: #fff;
-    border-color: #76b7e9;
-    outline: 0;
-    box-shadow: 0 0 0 0px #28a745
-}
+  th,
+  td {
+    text-align: center;
+  }
+  

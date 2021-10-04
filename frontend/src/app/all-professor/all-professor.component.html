@@ -1,0 +1,54 @@
+<app-header></app-header>
+<section id="section">
+  <!-- <div class="card"> -->
+  <!-- <div class="card-header">All profs</div> -->
+  <!-- <div class="card-body"> -->
+  <div class="container-fluid">
+    <h4 style="text-align: center">STUDENTS LIST</h4>
+    <!-- loading-spinner -->
+    <div *ngIf="isLoading" style="text-align: center">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <table
+      class="
+        table
+        table-primary
+        table-hover
+        table-responsive-sm
+        table-responsive-md
+        table-responsive-lg
+        table-bordered
+      "
+    >
+      <thead class="thead-dark">
+        <tr>
+          <th>Name</th>
+          <th>DOB</th>
+          <th>Sex</th>
+          <th>Qualification</th>
+          <th>Full Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let professor of profs">
+          <td>{{ professor.fname }} {{ professor.lname }}</td>
+          <td>{{ professor.DOB | date }}</td>
+          <td>{{ professor.Gender }}</td>
+          <td>{{ professor.qual }}</td>
+
+          <td>
+            <button
+              class="btn btn-sm btn-warning"
+              style="cursor: pointer; margin-left: 20px"
+              *ngIf="professor.fname"
+            >
+              <a [routerLink]="['/professors', professor._id]">View</a>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- </div> -->
+</section>
+<app-footer></app-footer>

@@ -10,22 +10,25 @@
         <span class="links_name">Dashboard</span>
       </a>
     </li>
+
     <li>
-      <a routerLink="requests" *ngIf="_adminService.loggedIn()">
-        <i class="bi bi-envelope-open-fill"></i>
-        <span class="links_name">Trainer Requests</span>
+      <a routerLink="courses" *ngIf="_adminService.loggedIn()">
+        <i class="bi bi-card-list"></i>
+        <span class="links_name">courses</span>
       </a>
     </li>
+
     <li>
-      <a routerLink="trainerlist" *ngIf="_adminService.loggedIn()">
-        <i class="bi bi-list-check"></i>
-        <span class="links_name">Trainers list</span>
+      <a routerLink="courses/new" *ngIf="_adminService.loggedIn()">
+        <i class="bi bi-plus-square-fill"></i>
+        <span class="links_name">add Course</span>
       </a>
     </li>
+
     <li>
-      <a routerLink="allocatedlist" *ngIf="_adminService.loggedIn()">
+      <a routerLink="students" *ngIf="_adminService.loggedIn()">
         <i class="bi bi-ui-checks"></i>
-        <span class="links_name">Allocated Trainers</span>
+        <span class="links_name">students</span>
       </a>
     </li>
 
@@ -37,9 +40,15 @@
     </li>
 
     <li>
-      <a routerLink="/students" *ngIf="_adminService.loggedIn()">
+      <a routerLink="students" *ngIf="_adminService.loggedIn()">
         <i class="bi bi-list-check"></i>
         <span class="links_name">students</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/professors" *ngIf="_adminService.loggedIn()">
+        <i class="bi bi-file-earmark-image-fill"></i>
+        <span class="link_name">professors</span>
       </a>
     </li>
 

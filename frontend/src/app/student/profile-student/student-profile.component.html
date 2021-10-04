@@ -28,6 +28,7 @@
                   <div class="form-file custom-file">
                     <input
                       class="form-file-input"
+                      formControlName=""
                       type="file"
                       (change)="selectImage($event)"
                       accept="image/png, image/gif, image/jpeg"
@@ -67,7 +68,7 @@
           <div class="card shadow-sm">
             <div class="card-header bg-transparent border-0">
               <h3 class="mb-0">
-                <i class="fa fa-address-card mr-1"></i>General Information
+                <i class="bi bi-person-lines-fill"></i>General information
               </h3>
             </div>
             <!-- loading spinner -->
@@ -86,18 +87,14 @@
                     <td width="2%">:</td>
                     <td [class.editModeOn]="!readonly">
                       <input
-                        *ngIf="readonly"
                         type="text"
                         [value]="Student.Name"
-                        class="noBorder"
+                     
                         readonly
-                      />
-                      <input
-                        *ngIf="!readonly"
-                        formControlName="Name"
-                        type="text"
-                        class="form-control Border"
-                      
+                        [ngClass]="{
+                          Border: !readonly,
+                          noBorder: readonly
+                        }"
                       />
                     </td>
                   </tr>
@@ -106,18 +103,14 @@
                     <td width="2%">:</td>
                     <td [class.editModeOn]="!readonly">
                       <input
-                        *ngIf="readonly"
+                        [readonly]="readonly"
                         type="text"
-                        [value]="Student.Email"
-                        class="noBorder"
-                        readonly
-                      />
-                      <input
-                        *ngIf="!readonly"
-                        type="text"
-                        class="form-control Border"
+                    
                         formControlName="Email"
-                        
+                        [ngClass]="{
+                          Border: !readonly,
+                          noBorder: readonly
+                        }"
                       />
                     </td>
                   </tr>
@@ -126,18 +119,14 @@
                     <td width="2%">:</td>
                     <td [class.editModeOn]="readonly == false">
                       <input
-                        *ngIf="readonly"
-                        type="text"
-                        [value]="Student.Phone"
-                        class="noBorder"
-                        readonly
-                      />
-                      <input
-                        *ngIf="!readonly"
+                        [readonly]="readonly"
                         type="text"
                         formControlName="Phone"
-                        
-                        class="form-control Border"
+                       
+                        [ngClass]="{
+                          Border: !readonly,
+                          noBorder: readonly
+                        }"
                       />
                     </td>
                   </tr>
@@ -147,23 +136,12 @@
                     <td width="2%">:</td>
                     <td [class.editModeOn]="!readonly">
                       <input
-                        *ngIf="readonly"
+                        readonly
                         type="text"
                         [value]="Student.Sex"
                         [ngClass]="{
+                          Border: !readonly,
                           noBorder: readonly
-                        }"
-                        readonly
-                      />
-                      <input
-                        *ngIf="!readonly"
-                        formControlName="Sex"
-                        type="text"
-                        class="form-control Border"
-                        
-                        readonly
-                        [ngClass]="{
-                          Border: !readonly
                         }"
                       />
                     </td>
@@ -172,19 +150,14 @@
                   <tr>
                     <th width="30%">Date Of Birth</th>
                     <td width="2%">:</td>
-                    <td [class.editModeOn]="readonly == false">
+                    <td [class.editModeOn]="!readonly">
                       <input
-                        *ngIf="readonly"
                         [value]="Student.DOB | date"
                         type="text"
-                        class="noBorder"
-                        readonly
-                      />
-                      <input
-                        *ngIf="!readonly"
-                        [value]="Student.DOB | date"
-                        type="text"
-                        class="Border form-control"
+                        [ngClass]="{
+                          Border: !readonly,
+                          noBorder: readonly
+                        }"
                         readonly
                       />
                     </td>
@@ -196,23 +169,13 @@
                     <td width="2%">:</td>
                     <td [class.editModeOn]="readonly == false">
                       <input
-                        *ngIf="readonly"
-                        [value]="Student.State"
+                      formControlName='State'
+
                         [ngClass]="{
                           Border: !readonly,
                           noBorder: readonly
                         }"
-                        readonly
-                      />
-                      <input
-                        *ngIf="!readonly"
-                        [value]="Student.State"
-                        class="form-control"
-                        [ngClass]="{
-                          Border: !readonly,
-                          noBorder: readonly
-                        }"
-                        readonly
+                        [readonly]="readonly"
                       />
                     </td>
                   </tr>
@@ -222,23 +185,12 @@
                     <td width="2%">:</td>
                     <td [class.editModeOn]="readonly == false">
                       <input
-                        *ngIf="readonly"
-                        [value]="Student.District"
+                      formControlName='District'
                         [ngClass]="{
                           Border: !readonly,
                           noBorder: readonly
                         }"
-                        readonly
-                      />
-                      <input
-                        *ngIf="!readonly"
-                        formControlName="District"
-                        class="form-control"
-                        [ngClass]="{
-                          Border: !readonly,
-                          noBorder: readonly
-                        }"
-                        readonly
+                        [readonly]="readonly"
                       />
                     </td>
                   </tr>
@@ -248,44 +200,41 @@
                     <td width="2%">:</td>
                     <td [class.editModeOn]="!readonly">
                       <input
-                        *ngIf="readonly"
-                        type="text"
-                        [value]="Student.Course"
-                        [ngClass]="{
-                          noBorder: readonly
-                        }"
-                        readonly
-                      />
-                      <input
-                        *ngIf="!readonly"
-                        class="form-control Border"
+                        *ngIf='readonly'
+                        class="form-control"
                         type="text"
                         formControlName="Course"
-                        [value]="Student.Course"
                         [ngClass]="{
-                          Border: !readonly
+                          Border: !readonly,
+                          noBorder: readonly
                         }"
                       />
+                      <select *ngIf="!readonly" [ngClass]="{
+                        Border: !readonly,
+                        noBorder: readonly
+                      }" formControlName="Course">
+                        <option class="hidden" value="" disabled selected>
+                          Interested Course *
+                        </option>
+                        <option value="MeanStack">MeanStack</option>
+                        <option value="CyberSecurity">CyberSecurity</option>
+                        <option value="DataScience">DataScience</option>
+                        <option value="Robotics">Robotics</option>
+                        <option value="DigitalMarketing">DigitalMarketing</option>
+                      </select>
                     </td>
                   </tr>
                   <!-- HighestQualification -->
                   <tr>
                     <th width="30%">Highest Qualification</th>
                     <td width="2%">:</td>
-                    <td *ngIf="readonly" [class.editModeOn]="!readonly">
-                      <input
-                        formControlName="HighestQualification"
-                        
-                        [ngClass]="{
-                          Border: !readonly,
-                          noBorder: readonly
-                        }"
-                        [readonly]="readonly"
-                      />
-                    </td>
+                    <td *ngIf="readonly">{{Student.HighestQualification}}</td>
                     <td *ngIf="!readonly">
                       <select
-                        class="form-control Border"
+                      [ngClass]="{
+                        Border: !readonly,
+                        noBorder: readonly
+                      }"
                         formControlName="HighestQualification"
                       >
                         <option class="hidden" value="" disabled selected>
@@ -312,29 +261,15 @@
                     <th width="30%">Pass Out Year</th>
                     <td width="2%">:</td>
                     <td [class.editModeOn]="readonly == false">
+                     
                       <input
-                        *ngIf="readonly"
-                        class="noBorder"
-                        type="number"
-                        min="2010"
-                        max="2021"
-                        step="1"
-                        [value]="Student.PassOfYear"
-                        [ngClass]="{
-                          Border: !readonly,
-                          noBorder: readonly
-                        }"
-                        readonly
-                      />
-                      <input
-                        *ngIf="!readonly"
+                        [readonly]="readonly"
                         class="form-control Border"
                         formControlName="PassOfYear"
                         type="number"
                         min="2010"
                         max="2021"
                         step="1"
-                        
                         [ngClass]="{
                           Border: !readonly,
                           noBorder: readonly
@@ -342,38 +277,11 @@
                       />
                     </td>
                   </tr>
-
-                  <!-- Password -->
-                  <tr>
-                    <th width="30%">Password</th>
-                    <td width="2%">:</td>
-                    <td [class.editModeOn]="!readonly">
-                      <input
-                        *ngIf="readonly"
-                        type="text"
-                        formControlName="Password"
-                        [ngClass]="{
-                          noBorder: readonly
-                        }"
-                        readonly
-                      />
-                      <input
-                        *ngIf="!readonly"
-                        formControlName="Password"
-                        type="text"
-                        class="form-control Border"
-                        
-                        [ngClass]="{
-                          Border: !readonly
-                        }"
-                      />
-                    </td>
-                  </tr>
                 </table>
 
-                <div *ngIf="readonly && Student.ApprovalDate != ''">
+                <div *ngIf="readonly && isApproved">
                   <button
-                    *ngIf="showEditButton"
+                    *ngIf="showDeleteButton"
                     (click)="update()"
                     class="btn btn-sm btn-warning"
                   >
@@ -390,11 +298,14 @@
                 </div>
 
                 <div *ngIf="!readonly">
-                  <button *ngIf="showEditButton" class="btn btn-success btn-sm">
+                  <button
+                    *ngIf="showDeleteButton"
+                    class="btn btn-success btn-sm"
+                  >
                     Save
                   </button>
                   <button
-                    *ngIf="showEditButton"
+                    *ngIf="showDeleteButton"
                     type="button"
                     (click)="discard()"
                     class="btn btn-info btn-sm"
@@ -407,14 +318,14 @@
             <!-- fdafafaf -->
             <div *ngIf="_auth.getUser() == 'admin'">
               <button
-                *ngIf="Student.ApprovalDate == ''"
+                *ngIf="!isApproved"
                 (click)="onApprove(Student._id, Student.Course, Student.Email)"
                 class="btn btn-sm btn-success"
               >
                 Approve
               </button>
               <button
-                *ngIf="Student.ApprovalDate == ''"
+                *ngIf="!isApproved"
                 (click)="onReject(Student._id, Student.Course, Student.Email)"
                 class="btn btn-sm btn-danger"
               >

@@ -37,7 +37,6 @@ export class LoginStudentComponent {
           const Name = response.Name;
           localStorage.setItem('token', response.token);
           localStorage.setItem('role', response.role);
-          localStorage.setItem('Name', response.id);
           localStorage.setItem('navigator', response.id);
           Swal.fire({
             title: `welcome ${Name}  🥰`,

@@ -1,16 +1,16 @@
-const express = require("express");
+const express = require('express');
 const app = new express();
-const cors = require("cors");
-const mongoose = require("mongoose");
-const session = require("express-session");
-const path = require("path");
-const wrapAsync = require("./util/wrapAsync");
-const ExpressError = require("./util/ExpressError");
+const cors = require('cors');
+const mongoose = require('mongoose');
+const session = require('express-session');
+const path = require('path');
+const wrapAsync = require('./util/wrapAsync');
+const ExpressError = require('./util/ExpressError');
 
 //*************************** connecting our database ****************************
 // const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/project-mean";
 const dbUrl =
-  "mongodb+srv://userone:sinu1@ictakfiles.g1s0x.mongodb.net/course-management?retryWrites=true&w=majority";
+  'mongodb+srv://userone:sinu1@ictakfiles.g1s0x.mongodb.net/course-management?retryWrites=true&w=majority';
 
 mongoose.connect(dbUrl, {
   useNewUrlParser: true,
@@ -19,17 +19,17 @@ mongoose.connect(dbUrl, {
   useFindAndModify: false,
 });
 const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-  console.log("database connected");
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log('database connected');
 });
 
-app.use(express.static("public"));
+app.use(express.static('public'));
 app.use(cors());
-app.use(express.json({ limit: "50mb" }));
+app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true }));
 const sessionConfig = {
-  secret: "thisisverysecret",
+  secret: 'thisisverysecret',
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -51,22 +51,20 @@ app.use(session(sessionConfig));
 //   },
 // });
 
-const studentRoutes = require("./routes/studentRoutes");
-const professorRoutes = require("./routes/professorRoutes");
-app.use("/students", studentRoutes);
-app.use("/professor", professorRoutes);
-//
-const trainerRoutes = require("./routes/trainerRoutes");
-const adminRoutes = require("./routes/adminRoutes");
-const searchRoutes = require("./routes/searchRoutes");
+const studentRoutes = require('./routes/studentRoutes');
+const professorRoutes = require('./routes/professorRoutes');
+const courseRoutes = require('./routes/courseRoutes');
+app.use('/api/v1/students', studentRoutes);
+app.use('/api/v1/professors', professorRoutes);
+app.use('/api/v1/courses', courseRoutes);
 
-app.use("/admin", adminRoutes);
-app.use("/trainers", trainerRoutes);
-app.use("/search", searchRoutes);
+//
+// const adminRoutes = require("./routes/adminRoutes");
+// app.use("/admin", adminRoutes);
 
 app.use((err, req, res, next) => {
   const { statusCode = 500 } = err;
-  if (!err.message) err.message = "Oh No, Something Went Wrong!";
+  if (!err.message) err.message = 'Oh No, Something Went Wrong!';
 
   console.log({ status: statusCode });
   console.log({ errorMessage: err.message });
@@ -74,5 +72,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(3000, function () {
-  console.log("listening to port number: 3000");
+  console.log('listening to port number: 3000');
 });

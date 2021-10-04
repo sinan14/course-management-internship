@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../shared/auth.service';
-import { FormBuilder, Validators } from '@angular/forms';
-import Swal from 'sweetalert2';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { AuthService } from "../../shared/auth.service";
+import { FormBuilder, Validators } from "@angular/forms";
+import Swal from "sweetalert2";
 
 @Component({
-  selector: 'app-login-employee',
-  templateUrl: './login-employee.component.html',
-  styleUrls: ['./login-employee.component.css'],
+  selector: "app-login-employee",
+  templateUrl: "./login-employee.component.html",
+  styleUrls: ["./login-employee.component.css"],
 })
 export class LoginEmployeeComponent implements OnInit {
   isLoading: boolean = false;
@@ -23,8 +23,8 @@ export class LoginEmployeeComponent implements OnInit {
 
   ngOnInit() {}
   empLoginForm = this._fb.group({
-    Email: ['', [Validators.pattern(this.emailReg), Validators.required]],
-    Password: ['', [Validators.pattern(this.passwordReg), Validators.required]],
+    Email: ["", [Validators.pattern(this.emailReg), Validators.required]],
+    Password: ["", [Validators.pattern(this.passwordReg), Validators.required]],
     // emp: ['', [Validators.required, Validators.pattern(this.empReg)]],
   });
 
@@ -36,41 +36,24 @@ export class LoginEmployeeComponent implements OnInit {
     this._auth.loginProfessor(this.empLoginForm.value).subscribe(
       (response) => {
         this.isLoading = false;
-        if (response.status) {
+        if (response.status == "success") {
           this.isLoading = false;
-          const id = response.id;
-
-          localStorage.setItem('token', response.token);
-          localStorage.setItem('role', response.role);
-          localStorage.setItem('navigator', response.id);
-          if (response.Name == 'Admin') {
-            const Name = 'Admin';
-            localStorage.setItem('Name', 'Admin');
-            Swal.fire({
-              title: `welcome ${Name}  🙏🏻🙏🏻🙏🏻`,
-              icon: 'success',
-              timer: 600,
-              showConfirmButton: false,
-            }).then(() => {
-              this._router.navigate(['/admin']);
-            });
-          }
-
-          if (response.Name != 'Admin') {
-            localStorage.setItem('Name', response.Name);
-            const Name = response.Name;
-            Swal.fire({
-              title: `welcome ${Name}  🥰`,
-              icon: 'success',
-              timer: 600,
-              showConfirmButton: false,
-            }).then(() => {
-              this._router.navigate([`/employee-panel`]);
-            });
-          }
+          console.log(response);
+          localStorage.setItem("token", response.token);
+          localStorage.setItem("role", response.role);
+          const Name = "Admin";
+          localStorage.setItem("Name", "Admin");
+          Swal.fire({
+            title: `welcome 🙏🏻🙏🏻🙏🏻`,
+            icon: "success",
+            timer: 1000,
+            showConfirmButton: false,
+          }).then(() => {
+            this._router.navigate(["/admin"]);
+          });
         } else {
           this.isLoading = false;
-          Swal.fire('Warning!!', 'User not found🤷‍♂️🤷‍♂️🤷‍♀️!', 'error').then(
+          Swal.fire("Warning!!", "User not found🤷‍♂️🤷‍♂️🤷‍♀️!", "error").then(
             (refresh) => {
               this.empLoginForm.reset();
             }
@@ -81,11 +64,11 @@ export class LoginEmployeeComponent implements OnInit {
         this.isLoading = false;
 
         Swal.fire({
-          title: '🤦‍♂️🤦‍♂️🤦‍♂️warning!!',
+          title: "🤦‍♂️🤦‍♂️🤦‍♂️warning!!",
           showConfirmButton: false,
           timer: 1000,
-          text: 'some internal error',
-          icon: 'error',
+          text: "some internal error",
+          icon: "error",
         }).then(() => {
           this.empLoginForm.reset();
         });

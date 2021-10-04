@@ -45,7 +45,7 @@ export class AdminDataTableComponent implements AfterViewInit {
         columnDefs: [
           { orderable: false, targets: 0 },
           {
-            targets: [0, 1, 3, 4, 5, 6, 12, 14, 15,  ],
+            targets: [0, 1, 3, 4, 5, 6, 12, 14, 15],
             visible: false,
           },
         ],
@@ -56,18 +56,18 @@ export class AdminDataTableComponent implements AfterViewInit {
         columns: [
           { title: "Image" },
           { title: "Id" },
-          { title: "Name" },
+          { title: "Name", className: "details-more" },
           { title: "Email" },
           { title: "Phone" },
           { title: "Gender" },
           { title: "DOB" },
-          { title: "Course" },
+          { title: "Course", className: "details-more" },
           { title: "Highest Qualification" },
-          { title: "Pass Out Year" },
-          { title: "State" },
-          { title: "District" },
+          { title: "Pass Out Year", className: "details-more" },
+          { title: "State", className: "details-more" },
+          { title: "District", className: "details-more" },
           { title: "Post" },
-          { title: "PinCode" },
+          { title: "PinCode", className: "details-more" },
           { title: "Status" },
           { title: "Created Date" },
           {

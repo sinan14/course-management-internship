@@ -2,9 +2,14 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// export const environment = {
+//   production: false,
+//   imagePath: "http://localhost:3000/images/requests"
+// };
 export const environment = {
   production: false,
-  imagePath: "http://localhost:3000/images/requests"
+
+  apiUrl: "http://localhost:3000/api/v1",
 };
 
 /*

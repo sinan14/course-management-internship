@@ -1,0 +1,64 @@
+<div class="py-5">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <span class="anchor" id="formLogin"></span>
+      <!-- form card login -->
+      <div class="card rounded-0">
+        <div class="card-header">
+          <h2 class="mb-0 text-center text-success">New Course</h2>
+        </div>
+        <div class="card-body">
+          <!-- we gives the name used in the ts file here to connect with html -->
+          <form [formGroup]="courseForm" (ngSubmit)="addCourse()">
+            <div class="form-group">
+              <label class="form-label">Course Title:</label>
+              <input class="form-control" type="text" formControlName="title" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Duration of Course:</label>
+              <input
+                class="form-control"
+                type="number"
+                formControlName="duration"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Course Fee</label>
+              <!-- we gives formControlName the exact we used in ts file -->
+              <input class="form-control" type="number" formControlName="fee" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Maximum Age Limit:</label>
+              <input
+                class="form-control"
+                type="number"
+                formControlName="ageLimit"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="description">Description</label>
+              <textarea
+                class="form-control"
+                type="text"
+                id="description"
+                rows="6"
+                formControlName="description"
+                required
+              ></textarea>
+            </div>
+
+            <button
+              [disabled]="courseForm.invalid"
+              type="submit"
+              style="margin: 0 17rem; text-align: center"
+              class="btn btn-success float-right"
+            >
+              Add
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -14,14 +14,20 @@
     <li class="nav-item active">
       <a class="nav-link" routerLink="/">Home</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/aboutus">About Us</a>
+    <li *ngIf="this._auth.getUser() == 'admin'" class="nav-item">
+      <a class="nav-link" routerLink="/admin">Professor</a>
+    </li>
+    <li *ngIf="this._auth.getUser() !== 'admin'" class="nav-item">
+      <a class="nav-link" routerLink="/">About Us</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" routerLink="/student/Enroll">Enroll</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/student/login">Log In</a>
+    <li *ngIf="!_auth.loggedIn()" class="nav-item">
+      <a class="nav-link" routerLink="/professor/login">Log In</a>
+    </li>
+    <li *ngIf="_auth.loggedIn()" (click)="logoutUser()" class="nav-item">
+      <a class="nav-link">Log out</a>
     </li>
   </ul>
 </nav>

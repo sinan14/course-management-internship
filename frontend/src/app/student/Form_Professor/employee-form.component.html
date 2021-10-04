@@ -5,7 +5,7 @@
       <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
       <h3>Welcome</h3>
       <p>Walk with us !</p>
-      <button class="btnRegister" type="button" routerLink="/employeelogin">
+      <button class="btnRegister" type="button" routerLink="/professor/login">
         Login</button
       ><br />
     </div>
@@ -55,7 +55,7 @@
           </div>
           <!-- form begins -->
           <div class="row register-form">
-            <form [formGroup]="employeeForm" (ngSubmit)="registerEmployee()">
+            <form [formGroup]="proForm" (ngSubmit)="registerEmployee()">
               <div class="row register-form">
                 <!-- LEFT SIDE -->
                 <div class="col-md-6">
@@ -71,8 +71,8 @@
                     />
                     <span
                       *ngIf="
-                        !employeeForm.get('fname').valid &&
-                        employeeForm.get('fname').touched
+                        !proForm.get('fname').valid &&
+                        proForm.get('fname').touched
                       "
                       class="help-block"
                       >first Name cannot be blank!</span
@@ -89,8 +89,8 @@
                     />
                     <span
                       *ngIf="
-                        !employeeForm.get('email').valid &&
-                        employeeForm.get('email').touched
+                        !proForm.get('email').valid &&
+                        proForm.get('email').touched
                       "
                       class="help-block"
                       >Enter Valid email!</span
@@ -110,8 +110,7 @@
                     />
                     <span
                       *ngIf="
-                        !employeeForm.get('DOB').valid &&
-                        employeeForm.get('DOB').touched
+                        !proForm.get('DOB').valid && proForm.get('DOB').touched
                       "
                       class="help-block"
                       >Enter Correct D.O.B!</span
@@ -134,8 +133,8 @@
                     </select>
                     <span
                       *ngIf="
-                        !employeeForm.get('qual').valid &&
-                        employeeForm.get('qual').touched
+                        !proForm.get('qual').valid &&
+                        proForm.get('qual').touched
                       "
                       class="help-block"
                       >Qualification cannot be blank</span
@@ -152,8 +151,8 @@
                     />
                     <span
                       *ngIf="
-                        !employeeForm.get('comp').valid &&
-                        employeeForm.get('comp').touched
+                        !proForm.get('comp').valid &&
+                        proForm.get('comp').touched
                       "
                       class="help-block"
                       >company name shouldnot be empty</span
@@ -175,8 +174,8 @@
                     </select>
                     <span
                       *ngIf="
-                        !employeeForm.get('course').valid &&
-                        employeeForm.get('course').touched
+                        !proForm.get('course').valid &&
+                        proForm.get('course').touched
                       "
                       class="help-block"
                       >course name shouldnot be empty</span
@@ -190,18 +189,16 @@
                       required
                       formControlName="State"
                     >
-                      <option class="hidden" value="" disabled selected>
-                        State *
-                      </option>
-                      <option *ngFor="let s of states" [value]="s">
-                        {{ s }}
+                      <option class="hidden" value="" disabled selected>state *</option>
+                      <option *ngFor="let state of indianStates" value="state">
+                        {{ state }}
                       </option>
                     </select>
 
                     <span
                       *ngIf="
-                        !employeeForm.get('State').valid &&
-                        employeeForm.get('State').touched
+                        !proForm.get('State').valid &&
+                        proForm.get('State').touched
                       "
                       class="help-block"
                       >State cannot be empty!</span
@@ -217,8 +214,8 @@
                     />
                     <span
                       *ngIf="
-                        !employeeForm.get('Post').valid &&
-                        employeeForm.get('Post').touched
+                        !proForm.get('Post').valid &&
+                        proForm.get('Post').touched
                       "
                       class="help-block"
                       >Post Name Cannot be blank!</span
@@ -262,8 +259,8 @@
                     />
                     <span
                       *ngIf="
-                        !employeeForm.get('lname').valid &&
-                        employeeForm.get('lname').touched
+                        !proForm.get('lname').valid &&
+                        proForm.get('lname').touched
                       "
                       class="help-block"
                       >last Name cannot be blank!</span
@@ -282,8 +279,8 @@
                     />
                     <span
                       *ngIf="
-                        !employeeForm.get('phno').valid &&
-                        employeeForm.get('phno').touched
+                        !proForm.get('phno').valid &&
+                        proForm.get('phno').touched
                       "
                       class="help-block"
                       >Enter valid phno number!</span
@@ -299,8 +296,7 @@
                     />
                     <span
                       *ngIf="
-                        !employeeForm.get('img').valid &&
-                        employeeForm.get('img').touched
+                        !proForm.get('img').valid && proForm.get('img').touched
                       "
                       class="help-block"
                       >image cannot be empty!</span
@@ -318,8 +314,8 @@
                     />
                     <span
                       *ngIf="
-                        !employeeForm.get('desgn').valid &&
-                        employeeForm.get('desgn').touched
+                        !proForm.get('desgn').valid &&
+                        proForm.get('desgn').touched
                       "
                       class="help-block"
                       >designation required</span
@@ -336,8 +332,8 @@
                     />
                     <span
                       *ngIf="
-                        !employeeForm.get('skill').valid &&
-                        employeeForm.get('skill').touched
+                        !proForm.get('skill').valid &&
+                        proForm.get('skill').touched
                       "
                       class="help-block"
                       >skill set is required</span
@@ -354,11 +350,11 @@
                     />
                     <span
                       *ngIf="
-                        !employeeForm.get('address').valid &&
-                        employeeForm.get('address').touched
+                        !proForm.get('address').valid &&
+                        proForm.get('address').touched
                       "
                       class="help-block"
-                      >choose a valid year!</span
+                      >enter valid address!</span
                     >
                   </div>
                   <!-- District -->
@@ -372,8 +368,8 @@
                     />
                     <span
                       *ngIf="
-                        employeeForm.get('District').invalid &&
-                        employeeForm.get('District').touched
+                        proForm.get('District').invalid &&
+                        proForm.get('District').touched
                       "
                       class="help-block"
                       >District cannot be blank !</span
@@ -392,31 +388,15 @@
                     />
                     <span
                       *ngIf="
-                        !employeeForm.get('PinCode').valid &&
-                        employeeForm.get('PinCode').touched
+                        !proForm.get('PinCode').valid &&
+                        proForm.get('PinCode').touched
                       "
                       class="help-block"
                       >Enter Valid pin code !</span
                     >
                   </div>
-                  <!-- button -->
                   <button type="submit" class="btnRegister">register</button>
                 </div>
-                <!-- <div class="col-md-12">
-                  <label for="inputCourses" class="form-label">ICTAK Course handling</label>
-                  <ng-select [items]="categories"  
-                             bindLabel="name"  
-                             placeholder="Select Category" 
-                             name="ictakcourses" 
-                             appendTo="body"    
-                             [multiple]="true"  
-                              required>  
-              </ng-select>  
-              <small class="form-text text-muted" *ngIf="
-              !employeeForm.get('course').valid &&
-              employeeForm.get('course').touched
-            " class="form-label text-danger">Select atleast one course</small>
-                </div> -->
               </div>
             </form>
           </div>

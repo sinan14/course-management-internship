@@ -63,17 +63,11 @@ export class AllStudentsComponent implements OnInit {
       this._studentService.editStudent(
         {
           ApprovalDate: new Date(),
-          Status: 'payment remaining',
+          Status: 'Active',
         },
         id
       ),
 
-      // this._http.post(`${this.backendUrl}/students/${id}/approve`, {
-      //   Student: { Email: `${Email}`, Course: `${Course}` },
-      // }),
-      // this._http.put(`${this.backendUrl}/students/${id}`, {
-      //   Student: { ApprovalDate: new Date(), Status: `payment remaining` },
-      // }),
     ])
       .pipe(tap(console.log))
       .subscribe(

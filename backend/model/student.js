@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const StudentSchema = new Schema({
+const studentSchema = new Schema({
   Name: {
     type: String,
     required: true,
@@ -75,17 +75,17 @@ const StudentSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Student", StudentSchema);
+module.exports = mongoose.model("Student", studentSchema);
 
-// StudentSchema.statics.hashPassword = function hashPassword(Password) {
+// studentSchema.statics.hashPassword = function hashPassword(Password) {
 //   return bcrypt.hashSync(Password, 10);
 // };
 
-// StudentSchema.methods.isValid = function(hashedpassword){
+// studentSchema.methods.isValid = function(hashedpassword){
 //   return bcrypt.compareSync(hashedpassword, this.Password);
 // }
 
-// StudentSchema.statics.findAndValidate = async function (Email, Password) {
+// studentSchema.statics.findAndValidate = async function (Email, Password) {
 //   const foundUser = await this.findOne({ Email,Password });
 // const isValid = await bcrypt.compare(Password, foundUser.Password);
 //   if (foundUser) {
@@ -95,7 +95,7 @@ module.exports = mongoose.model("Student", StudentSchema);
 //   }
 // };
 
-// StudentSchema.pre("save", async function (next) {
+// studentSchema.pre("save", async function (next) {
 //   if (!this.isModified("Password")) return next();
 //   this.Password = await bcrypt.hash(this.Password, 10);
 //   next();

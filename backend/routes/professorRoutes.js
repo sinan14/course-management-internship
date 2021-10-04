@@ -1,17 +1,41 @@
-const express = require("express");
-const wrapAsync = require("../util/wrapAsync");
+const express = require('express');
+const wrapAsync = require('../util/wrapAsync');
 const router = express.Router();
-const jwt = require("jsonwebtoken");
-const empData = require("../model/employee");
-const { verifyToken } = require("../middleware");
+const jwt = require('jsonwebtoken');
+const Professor = require('../model/professor');
+const { verifyToken } = require('../middleware');
+const multer = require('multer');
+var imagedest = __dirname;
+var upload = multer({ dest: imagedest });
+const fs = require('fs');
 
 router.post(
-  "/register",
+  '/register',
   wrapAsync(async function (req, res) {
-    console.log(req.body);
-    const employee = new empData(req.body);
-    console.log(employee);
-    employee
+    var pro = {
+      fname: req.body.fname,
+      lname: req.body.lname,
+      address: req.body.address,
+      email: req.body.email,
+      phno: req.body.phno,
+      qual: req.body.qual,
+
+      skill: req.body.skill,
+      comp: req.body.comp,
+      desgn: req.body.desgn,
+      course: req.body.course,
+      Gender: req.body.Gender,
+      DOB: req.body.DOB,
+      State: req.body.State,
+      District: req.body.District,
+      Post: req.body.Post,
+      PinCode: req.body.PinCode,
+      Password: req.body.Password,
+    };
+    console.log(pro);
+
+    const professor = new Professor(pro);
+    professor
       .save()
       .then(function (data) {
         res.send(true);
@@ -24,12 +48,12 @@ router.post(
 );
 //******************************************************************* */
 router.put(
-  "/reset",
+  '/reset',
   wrapAsync(async (req, res) => {
     console.log(req.body);
-    const { Email, Password } = req.body;
-    const employee = await empData.findOneAndUpdate(Email, { Password });
-    if (employee) {
+    const { email, Password } = req.body;
+    const professor = await Professor.findOneAndUpdate(email, { Password });
+    if (professor) {
       res.status(200).send({ status: true });
     } else {
       res.send({ status: false });
@@ -39,62 +63,55 @@ router.put(
 //************************************************************************* */
 
 router.post(
-  "/login",
+  '/login',
   wrapAsync(async function (req, res) {
     console.log(req.body);
-    // console.log(Email);
+    console.log('hi bro');
     const { Email, Password } = req.body;
-    if (Email == "admin@ictak.com" && Password == "Admin@11") {
-      req.session.role = "admin";
-      // console.log("admin login success");
-      const payload = { subject: Email, admin: true };
-      const token = jwt.sign(payload, "secretKey", { expiresIn: "1h" });
-      const Name = "Admin";
-      res.send({ status: 200, token, Name, role: req.session.role });
-    } else if (Email != "admin@ictak.com") {
-      const foundUser = await empData.findOne({ Email, Password });
+    const user = await Professor.findOne({ email: Email, Password: Password });
+    console.log(user);
+    if (user) {
+      req.session.role = 'admin';
+      const payload = { subject: Email + Password, admin: true };
+      const token = jwt.sign(payload, 'secretKey', { expiresIn: '24h' });
+      const Name = 'Admin';
+      res.status(200).json({
+        data: 'success',
+        status: 'success',
+        token,
+        Name,
+        role: req.session.role,
+      });
+    } else {
+      res.status(404).json({ status: 'fail' });
+    }
+  })
+);
 
-      if (foundUser) {
-        const id = foundUser._id;
-        const Name = foundUser.Name;
-        console.log("an employee loginned");
-        req.session.role = "employee";
-        const payload = { subject: Email, admin: false };
-        const token = jwt.sign(payload, "secretKey", { expiresIn: "1h" });
-        res.send({ status: true, token, Name, id, role: req.session.role });
-      } else {
-        res.send(false);
-      }
+//***************************    Getting all professor      *************************/
+
+router.get(
+  '',
+  wrapAsync(async (req, res) => {
+    const professors = await Professor.find();
+    console.log(professors);
+    if (professors) {
+      res.send(professors);
     } else {
       res.send(false);
     }
   })
 );
 
-//***************************    Getting all employee      *************************/
+//***************            professor fetching By Id      *****************************/
 
 router.get(
-  "",
+  '/:id',
   wrapAsync(async (req, res) => {
-    const Employees = await empData.find();
-    console.log(Employees);
-    if (Employees) {
-      res.send(Employees);
-    } else {
-      res.send(false);
-    }
-  })
-);
-
-//***************            employee fetching By Id      *****************************/
-
-router.get(
-  "/:id",
-  wrapAsync(async (req, res) => {
-    const Employee = await empData.findById(req.params.id);
-    // console.log(Employee)
-    if (Employee) {
-      return res.send(Employee);
+    const professor = await Professor.findById(req.params.id);
+    // console.log(professors)
+    if (professor) {
+      return res.send(professor);
     } else {
       return res.send(false);
     }
@@ -103,16 +120,16 @@ router.get(
 
 //************************        profile update        ******************************/
 router.put(
-  "/:id",
+  '/:id',
   wrapAsync(async (req, res) => {
     const { id } = req.params;
 
     console.log(req.body);
-    const Employee = await empData.findByIdAndUpdate(id, {
+    const professors = await Professor.findByIdAndUpdate(id, {
       ...req.body,
     });
-    console.log(Employee);
-    if (Employee) {
+    console.log(professors);
+    if (professors) {
       return res.send(true);
     } else {
       return res.send(false);
@@ -120,13 +137,13 @@ router.put(
   })
 );
 
-//*************************    delete the employee profile     *************************/
+//*************************    delete the professor profile     *************************/
 
 router.delete(
-  "/:id",
+  '/:id',
   wrapAsync(async (req, res) => {
-    const deletedStudent = await empData.findByIdAndDelete(req.params.id);
-    if (deletedStudent) {
+    const deleted = await Professor.findByIdAndDelete(req.params.id);
+    if (deleted) {
       return res.status(200).send(true);
     } else {
       return res.send(false);
